@@ -1,0 +1,2231 @@
+/**
+ * ========================================
+ * ANTI-FRODE PAGE
+ * ========================================
+ * 
+ * Pagina servizio protezione anti-frode
+ * Material Design con layout responsive
+ * Stile coerente con Navbar, Footer e Homepage
+ * 
+ * ========================================
+ */
+
+   .antifrode {
+    max-width: 75rem; /* 1200px */
+    margin: 0 auto;
+    padding: calc(var(--spaziatura-xxl) + 3.75rem) var(--spaziatura-lg) var(--spaziatura-lg); /* 60px */
+    background: var(--sfondo-principale);
+    color: var(--testo-grigio-scuro);
+    line-height: 1.6;
+    min-height: calc(100vh - 12.5rem); /* Fallback - 200px */
+    min-height: calc(100svh - 12.5rem); /* Dynamic viewport height per mobile - 200px */
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: visible;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    position: relative;
+  }
+  
+  /* Assicura che tutti i contenitori siano responsive */
+  .antifrode > *,
+  .antifrode section,
+  .antifrode div[class*="antifrode"] {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Escludi le sezioni blu full-width dalla limitazione */
+  .antifrode__what-we-analyze,
+  .antifrode__fraud-report,
+  .antifrode__chatbot {
+    max-width: none;
+  }
+  
+  /* Assicura che tutti gli elementi della pagina usino Montserrat come la navbar */
+  .antifrode,
+  .antifrode *,
+  .antifrode h1,
+  .antifrode h2,
+  .antifrode h3,
+  .antifrode h4,
+  .antifrode h5,
+  .antifrode h6,
+  .antifrode p,
+  .antifrode span,
+  .antifrode div,
+  .antifrode a,
+  .antifrode button,
+  .antifrode input,
+  .antifrode textarea,
+  .antifrode select,
+  .antifrode label,
+  .antifrode li,
+  .antifrode td,
+  .antifrode th {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Scroll reveal classes centralizzate in index.css - solo delay specifici qui */
+  
+  /* Delay progressivi per elementi multipli */
+  .antifrode__intro .scroll-reveal-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .antifrode__intro .scroll-reveal-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  
+  .antifrode-collapsibles-list .scroll-reveal-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .antifrode-collapsibles-list .scroll-reveal-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  
+  .antifrode-collapsibles-list .scroll-reveal-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  .semaforo-visual-wrapper .scroll-reveal-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .semaforo-visual-wrapper .scroll-reveal-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  
+  .semaforo-info .scroll-reveal-item {
+    transition-delay: 0.15s;
+  }
+  
+  /* ========================================
+   * INTRO SECTION
+   * ======================================== */
+  .antifrode__intro {
+    text-align: center;
+    margin-bottom: var(--spaziatura-xxl);
+    padding: var(--spaziatura-sm) 0 var(--spaziatura-xl) 0;
+    margin-top: calc(-1 * var(--spaziatura-xxl));
+  }
+  
+  .antifrode__intro h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--colore-primario);
+    margin: 0 0 var(--spaziatura-md) 0;
+    letter-spacing: -0.01562em;
+    line-height: 1.2;
+  }
+  
+  .antifrode__main-title {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .antifrode__main-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--colore-primario);
+    margin: var(--spaziatura-sm) auto 0 auto;
+    border-radius: var(--border-radius-piccolo);
+    animation: expandWidth 0.8s ease-out forwards 0.5s;
+    transform-origin: center;
+  }
+  
+  /* Animazione expandWidth centralizzata in DesignSystem.css */
+  
+  
+  .antifrode__intro p {
+    font-size: 1.125rem;
+    max-width: 50rem; /* 800px */
+    margin: 0 auto;
+    color: var(--testo-grigio-scuro);
+    opacity: 0.8;
+    line-height: 1.7;
+  }
+  
+  /* ========================================
+   * HOW IT WORKS SECTION
+   * ======================================== */
+  .antifrode__how-it-works {
+    max-width: 100%;
+    margin: var(--spaziatura-xxl) 0;
+    padding: 0;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .antifrode__how-it-works-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--colore-primario);
+    text-align: center;
+    margin: 0 0 var(--spaziatura-xxl) 0;
+    letter-spacing: -0.01562em;
+  }
+  
+  .antifrode__steps {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: var(--spaziatura-xl);
+    margin-top: var(--spaziatura-xl);
+    margin-bottom: var(--spaziatura-xxl);
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .antifrode__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: var(--spaziatura-xl);
+    background: var(--sfondo-bianco);
+    border-radius: 0;
+    box-shadow: var(--elevation-2);
+    transition: box-shadow var(--duration-medium-2) var(--easing-standard),
+                transform var(--duration-medium-2) var(--easing-standard);
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    max-width: 21.875rem; /* 350px */
+    min-height: 17.5rem; /* 280px */
+    box-sizing: border-box;
+  }
+  
+  .antifrode__step:hover {
+    transform: scale(1.05);
+    box-shadow: var(--elevation-8);
+    z-index: 10;
+  }
+  
+  .antifrode__step-number {
+    width: 3.75rem; /* 60px */
+    height: 3.75rem; /* 60px */
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid var(--colore-primario);
+    color: var(--colore-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spaziatura-lg);
+    margin-top: 0;
+    box-shadow: none;
+    flex-shrink: 0;
+  }
+  
+  .antifrode__step-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--colore-primario);
+    margin: 0 0 var(--spaziatura-md) 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    min-height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .antifrode__step-description {
+    font-size: 0.9375rem;
+    color: var(--testo-grigio-scuro);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.8;
+    flex-grow: 1;
+  }
+  
+  /* ========================================
+   * WHAT WE ANALYZE SECTION
+   * ======================================== */
+  .antifrode__what-we-analyze {
+    /* Mobile: usa 100% per evitare scrollbar orizzontale */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: calc(-1 * var(--spaziatura-lg));
+    margin-right: calc(-1 * var(--spaziatura-lg));
+    background: linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    margin-bottom: var(--spaziatura-xl);
+    margin-top: var(--spaziatura-xxl);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  /* Desktop: full-width con padding laterale */
+  @media (min-width: 768px) {
+    .antifrode__what-we-analyze {
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      width: 100vw;
+      max-width: 100vw;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl));
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl));
+    }
+  }
+
+  /* Large desktop: estende fino ai bordi - DEVE avere priorità sulle media query mobile/tablet */
+  @media (min-width: 1024px) {
+    .antifrode__what-we-analyze {
+      margin-left: calc(-50vw + 50%) !important;
+      margin-right: calc(-50vw + 50%) !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+    }
+  }
+  
+  .antifrode__what-we-analyze:hover {
+    box-shadow: 
+      0 12px 48px rgba(0, 0, 0, 0.3),
+      0 6px 24px rgba(0, 0, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .antifrode__what-we-analyze-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--testo-bianco);
+    text-align: center;
+    margin: 0 0 var(--spaziatura-xl) 0;
+    letter-spacing: -0.01562em;
+  }
+  
+  .antifrode__analyze-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-md);
+    max-width: 50rem; /* 800px */
+    margin: 0 auto;
+    padding: var(--spaziatura-xl);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .antifrode__analyze-item {
+    font-size: 1rem;
+    color: var(--testo-bianco);
+    line-height: 1.6;
+    padding: var(--spaziatura-md);
+    padding-left: calc(var(--spaziatura-md) + var(--spaziatura-lg) + var(--spaziatura-sm));
+    border-left: 4px solid var(--testo-bianco);
+    background: rgba(255, 255, 255, 0.1);
+    transition: background var(--duration-medium-2) var(--easing-standard),
+                transform var(--duration-medium-2) var(--easing-standard),
+                box-shadow var(--duration-medium-2) var(--easing-standard);
+    position: relative;
+  }
+  
+  .antifrode__analyze-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .antifrode__analyze-item::before {
+    content: '✓';
+    position: absolute;
+    left: var(--spaziatura-md);
+    color: var(--testo-bianco);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-right: var(--spaziatura-sm);
+  }
+  
+  /* ========================================
+   * BENEFITS SECTION
+   * ======================================== */
+  .antifrode__benefits {
+    max-width: 100%;
+    margin: var(--spaziatura-xxl) 0;
+    margin-bottom: var(--spaziatura-xxl);
+    padding: 0;
+    padding-bottom: var(--spaziatura-md);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .antifrode__benefits-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--colore-primario);
+    text-align: center;
+    margin: 0 auto var(--spaziatura-xxl) auto;
+    letter-spacing: -0.01562em;
+    position: relative;
+    display: inline-block;
+    width: auto;
+  }
+  
+  .antifrode__benefits-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+    margin: var(--spaziatura-md) auto 0 auto;
+    border-radius: 2px;
+    animation: expandWidth 0.8s ease-out forwards 0.3s;
+    transform-origin: center;
+    opacity: 1;
+  }
+  
+  .antifrode__benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); /* 320px */
+    gap: var(--spaziatura-xl);
+    margin-top: var(--spaziatura-xl);
+    margin-bottom: var(--spaziatura-lg);
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .antifrode__benefit-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    background: var(--sfondo-bianco);
+    border-radius: 0;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.08),
+      0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .antifrode__benefit-card:hover {
+    box-shadow: 
+      0 8px 24px rgba(21, 101, 214, 0.15),
+      0 4px 12px rgba(21, 101, 214, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.08);
+    transform: translateY(-8px);
+    border-color: rgba(21, 101, 214, 0.2);
+  }
+  
+  /* Ripple effect Material Design */
+  .antifrode__benefit-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(21, 101, 214, 0.15) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .antifrode__benefit-card:active::after {
+    width: 400px;
+    height: 400px;
+    opacity: 1;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .antifrode__benefit-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--spaziatura-lg);
+    line-height: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--colore-primario);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .antifrode__benefit-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .antifrode__benefit-card:hover .antifrode__benefit-icon {
+    transform: scale(1.15) translateY(-4px);
+    color: var(--colore-intermedio);
+  }
+  
+  .antifrode__benefit-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--colore-primario);
+    margin: 0 0 var(--spaziatura-md) 0;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .antifrode__benefit-description {
+    font-size: 1rem;
+    color: var(--testo-grigio-scuro);
+    line-height: 1.7;
+    margin: 0;
+    opacity: 0.85;
+    position: relative;
+    z-index: 1;
+    max-width: 280px;
+  }
+  
+  /* ========================================
+   * FRAUD REPORT SECTION
+   * ======================================== */
+  .antifrode__fraud-report {
+    /* Mobile: usa 100% per evitare scrollbar orizzontale */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin-left: calc(-1 * var(--spaziatura-lg));
+    margin-right: calc(-1 * var(--spaziatura-lg));
+    background: linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    margin-bottom: var(--spaziatura-xl);
+    margin-top: var(--spaziatura-xxl);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+    box-sizing: border-box;
+    text-align: center;
+    z-index: 1;
+  }
+
+  /* Desktop: full-width con padding laterale */
+  @media (min-width: 768px) {
+    .antifrode__fraud-report {
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      width: 100vw;
+      max-width: 100vw;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl));
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl));
+    }
+  }
+
+  /* Large desktop: estende fino ai bordi - DEVE avere priorità sulle media query mobile/tablet */
+  @media (min-width: 1024px) {
+    .antifrode__fraud-report {
+      margin-left: calc(-50vw + 50%) !important;
+      margin-right: calc(-50vw + 50%) !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+    }
+  }
+  
+  .antifrode__fraud-report:hover {
+    box-shadow: 
+      0 12px 48px rgba(0, 0, 0, 0.3),
+      0 6px 24px rgba(0, 0, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .antifrode__fraud-report-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--testo-bianco);
+    text-align: center;
+    margin: 0 0 var(--spaziatura-md) 0;
+    letter-spacing: -0.01562em;
+    position: relative;
+    display: inline-block;
+    width: auto;
+  }
+  
+  .antifrode__fraud-report-title::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: var(--testo-bianco);
+    margin: var(--spaziatura-md) auto 0 auto;
+    border-radius: 2px;
+    animation: expandWidth 0.8s ease-out forwards 0.3s;
+    transform-origin: center;
+    opacity: 1;
+  }
+  
+  .antifrode__fraud-report-intro {
+    font-size: 1.125rem;
+    color: var(--testo-bianco);
+    text-align: center;
+    max-width: 50rem; /* 800px */
+    margin: 0 auto var(--spaziatura-xxl);
+    line-height: 1.7;
+    opacity: 0.95;
+  }
+  
+  /* ========================================
+   * FRAUD GUIDE
+   * ======================================== */
+  .antifrode__fraud-guide {
+    margin-bottom: var(--spaziatura-xxl);
+  }
+  
+  .antifrode__fraud-guide-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--testo-bianco);
+    text-align: center;
+    margin: 0 0 var(--spaziatura-xl) 0;
+  }
+  
+  .antifrode__fraud-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spaziatura-lg);
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .antifrode__fraud-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spaziatura-xl);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .antifrode__fraud-step:hover {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.5);
+    background: var(--sfondo-bianco);
+  }
+  
+  .antifrode__fraud-step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    border: 3px solid var(--colore-primario);
+    color: var(--colore-primario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spaziatura-md);
+    flex-shrink: 0;
+    box-shadow: none;
+  }
+  
+  .antifrode__fraud-step-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--colore-primario);
+    margin: 0 0 var(--spaziatura-sm) 0;
+  }
+  
+  .antifrode__fraud-step-content p {
+    font-size: 0.9375rem;
+    color: var(--testo-grigio-scuro);
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.85;
+  }
+  
+  /* ========================================
+   * FRAUD CONTACTS
+   * ======================================== */
+  .antifrode__fraud-contacts {
+    margin-top: var(--spaziatura-xxl);
+  }
+  
+  .antifrode__fraud-contacts-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--testo-bianco);
+    text-align: center;
+    margin: 0 0 var(--spaziatura-xl) 0;
+  }
+  
+  .antifrode__fraud-contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spaziatura-xl);
+    max-width: 100%;
+    margin: 0;
+    justify-items: center;
+  }
+  
+  
+  .antifrode__fraud-contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0;
+    box-shadow: 
+      0 2px 8px rgba(0, 0, 0, 0.15),
+      0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    min-height: 280px;
+    width: 100%;
+    max-width: 320px;
+  }
+  
+  .antifrode__fraud-contact-card:hover {
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.5);
+    background: var(--sfondo-bianco);
+  }
+  
+  .antifrode__fraud-contact-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--spaziatura-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--colore-primario);
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    padding: var(--spaziatura-sm);
+  }
+  
+  .antifrode__fraud-contact-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .antifrode__fraud-contact-card:hover .antifrode__fraud-contact-icon {
+    transform: scale(1.1);
+    color: var(--colore-intermedio);
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .antifrode__fraud-contact-name {
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--colore-primario);
+    margin: 0 0 var(--spaziatura-sm) 0;
+  }
+  
+  .antifrode__fraud-contact-desc {
+    font-size: 0.9375rem;
+    color: var(--testo-grigio-scuro);
+    line-height: 1.6;
+    margin: 0 0 var(--spaziatura-lg) 0;
+    opacity: 0.85;
+  }
+  
+  .antifrode__fraud-contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-sm);
+    width: 100%;
+    margin-top: auto;
+  }
+  
+  .antifrode__fraud-contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spaziatura-sm);
+    padding: var(--spaziatura-sm) var(--spaziatura-md);
+    color: var(--colore-primario);
+    text-decoration: none;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9375rem;
+    border: 1px solid transparent;
+  }
+  
+  .antifrode__fraud-contact-link:hover {
+    background: rgba(21, 101, 214, 0.05);
+    border-color: rgba(21, 101, 214, 0.2);
+    color: var(--colore-intermedio);
+  }
+  
+  .antifrode__fraud-contact-link svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  
+  .antifrode__fraud-contact-note {
+    font-size: 0.875rem;
+    color: var(--testo-grigio-scuro);
+    margin: var(--spaziatura-sm) 0 0 0;
+    opacity: 0.7;
+    font-style: italic;
+  }
+  
+  /* ========================================
+   * DIVIDER
+   * ======================================== */
+  .antifrode-divider {
+    max-width: 100%;
+    margin: var(--spaziatura-xxl) 0 var(--spaziatura-xxl);
+    padding: 0;
+    border: none;
+    height: 3px;
+    background: var(--colore-primario);
+    opacity: 1;
+    box-shadow: 0 2px 4px rgba(21, 101, 214, 0.2);
+  }
+  
+  /* ========================================
+   * PRACTICES SECTION
+   * ======================================== */
+  .antifrode__practices-wrapper {
+    max-width: 100%;
+    margin: var(--spaziatura-xxl) 0;
+    margin-bottom: var(--spaziatura-xxl);
+    padding: 0;
+    padding-bottom: var(--spaziatura-md);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .antifrode__practices {
+    display: flex;
+    flex-direction: row;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.15),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--sfondo-bianco);
+    min-height: 400px;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .antifrode__practices:hover {
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.2),
+      0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .antifrode__practices-image {
+    flex: 1;
+    position: relative;
+    min-height: 400px;
+  }
+  
+  .antifrode__practices-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+  }
+  
+  .antifrode__practices-overlay {
+    display: none;
+  }
+  
+  .antifrode__practices-content {
+    flex: 1;
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    padding-bottom: var(--spaziatura-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: var(--sfondo-bianco);
+  }
+  
+  .antifrode__practices-title {
+    font-size: 2.5rem;
+    margin: 0 0 var(--spaziatura-md) 0;
+    color: var(--colore-primario);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  
+  .antifrode__practices-subtitle {
+    font-size: 1.125rem;
+    margin: 0 0 var(--spaziatura-xl) 0;
+    color: var(--testo-grigio-scuro);
+    font-weight: 400;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+  
+  /* ========================================
+   * COLLAPSIBLES SECTION
+   * ======================================== */
+  .antifrode__collapsibles {
+    max-width: 100%;
+    margin: var(--spaziatura-xxl) 0 var(--spaziatura-xxl);
+    padding: var(--spaziatura-xxl) var(--spaziatura-md);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+    position: relative;
+    overflow-x: hidden !important;
+    overflow-y: visible;
+    display: flex !important;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1;
+  }
+  
+  .antifrode__collapsibles::before {
+    display: none;
+  }
+  
+  .antifrode__collapsibles:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .antifrode__collapsibles h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.87);
+    margin: 0 0 var(--spaziatura-xl) 0;
+    text-align: left;
+    letter-spacing: -0.01562em;
+  }
+  
+  /* ========================================
+   * CHATBOT SECTION
+   * ======================================== */
+  .antifrode__chatbot {
+    /* Mobile: usa 100% per evitare scrollbar orizzontale */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin-left: calc(-1 * var(--spaziatura-lg));
+    margin-right: calc(-1 * var(--spaziatura-lg));
+    background: linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+    padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    margin-bottom: var(--spaziatura-xl);
+    margin-top: var(--spaziatura-xl);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: visible;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  /* Desktop: full-width con padding laterale */
+  @media (min-width: 768px) {
+    .antifrode__chatbot {
+      margin-left: calc(-50vw + 50%);
+      margin-right: calc(-50vw + 50%);
+      width: 100vw;
+      max-width: 100vw;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl));
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl));
+    }
+  }
+
+  /* Large desktop: estende fino ai bordi - DEVE avere priorità sulle media query mobile/tablet */
+  @media (min-width: 1024px) {
+    .antifrode__chatbot {
+      margin-left: calc(-50vw + 50%) !important;
+      margin-right: calc(-50vw + 50%) !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      padding-left: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+      padding-right: calc(50vw - 50% + var(--spaziatura-xl)) !important;
+    }
+  }
+  
+  .antifrode__chatbot:hover {
+    box-shadow: 
+      0 12px 48px rgba(0, 0, 0, 0.3),
+      0 6px 24px rgba(0, 0, 0, 0.25),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .semaforo-container {
+    max-width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spaziatura-xxl);
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+  }
+  
+  .antifrode__chatbot::before {
+    display: none;
+  }
+  
+  .antifrode__chatbot:hover {
+    transform: none;
+    box-shadow: var(--elevation-8);
+  }
+  
+  /* ========================================
+   * PRACTICES LIST
+   * ======================================== */
+  .antifrode-practices-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-sm);
+  }
+  
+  .antifrode-practices-list li {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--testo-grigio-scuro);
+    text-align: left;
+    padding: var(--spaziatura-sm) 0;
+    position: relative;
+    padding-left: var(--spaziatura-lg);
+  }
+  
+  .antifrode-practices-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: var(--spaziatura-xs);
+    color: var(--colore-primario);
+    font-weight: 700;
+    font-size: 1.125rem;
+  }
+  
+  .antifrode-practices-list li strong {
+    color: var(--colore-primario);
+    font-weight: 600;
+  }
+  
+  /* ========================================
+   * SEMAFORO
+   * ======================================== */
+  
+  .semaforo-visual-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spaziatura-xl);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 40px;
+  }
+  
+  .semaforo-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-lg);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .semaforo-info h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--testo-bianco);
+    margin: 0;
+    text-align: left;
+    letter-spacing: -0.01562em;
+  }
+  
+  .semaforo-description {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+    margin: 0;
+  }
+  
+  .semaforo-info .disclaimer {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+  }
+  
+  .semaforo-visual {
+    width: 120px;
+    height: 320px;
+    background: linear-gradient(180deg, #2c2c2c 0%, #1a1a1a 100%);
+    border-radius: 30px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      inset 0 2px 8px rgba(255, 255, 255, 0.1);
+    border: 4px solid #0d0d0d;
+    position: relative;
+    transition: transform var(--duration-medium-2) var(--easing-standard);
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+  
+  .semaforo-visual:hover {
+    transform: scale(1.05);
+  }
+  
+  .semaforo-visual::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 40px;
+    background: linear-gradient(180deg, #0d0d0d, #2c2c2c);
+    border-radius: 4px;
+  }
+  
+  .semaforo-light {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.6);
+    position: relative;
+  }
+  
+  .semaforo-light::after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .semaforo-light.active::after {
+    opacity: 1;
+  }
+  
+  .semaforo-light.verde {
+    background: radial-gradient(circle at 30% 30%, #2d5016, #1a3010);
+    border: 3px solid #1a3010;
+  }
+  
+  .semaforo-light.verde.active {
+    background: radial-gradient(circle at 30% 30%, #66ff66, #33cc33);
+    box-shadow: 
+      0 0 30px rgba(102, 255, 102, 0.9),
+      0 0 60px rgba(102, 255, 102, 0.6),
+      0 0 90px rgba(102, 255, 102, 0.3),
+      inset 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid #33cc33;
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+  
+  .semaforo-light.giallo {
+    background: radial-gradient(circle at 30% 30%, #4d4520, #332e15);
+    border: 3px solid #332e15;
+  }
+  
+  .semaforo-light.giallo.active {
+    background: radial-gradient(circle at 30% 30%, #ffff66, #ffdd33);
+    box-shadow: 
+      0 0 30px rgba(255, 255, 102, 0.9),
+      0 0 60px rgba(255, 255, 102, 0.6),
+      0 0 90px rgba(255, 255, 102, 0.3),
+      inset 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid #ffdd33;
+    animation: pulse-yellow 2s ease-in-out infinite;
+  }
+  
+  .semaforo-light.rosso {
+    background: radial-gradient(circle at 30% 30%, #4d1a1a, #331010);
+    border: 3px solid #331010;
+  }
+  
+  .semaforo-light.rosso.active {
+    background: radial-gradient(circle at 30% 30%, #ff4444, #cc0000);
+    box-shadow: 
+      0 0 30px rgba(255, 68, 68, 0.9),
+      0 0 60px rgba(255, 68, 68, 0.6),
+      0 0 90px rgba(255, 68, 68, 0.3),
+      inset 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid #cc0000;
+    animation: pulse-red 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-green {
+    0%, 100% { 
+      box-shadow: 
+        0 0 30px rgba(102, 255, 102, 0.9), 
+        0 0 60px rgba(102, 255, 102, 0.6), 
+        0 0 90px rgba(102, 255, 102, 0.3), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+    50% { 
+      box-shadow: 
+        0 0 40px rgba(102, 255, 102, 1), 
+        0 0 80px rgba(102, 255, 102, 0.8), 
+        0 0 120px rgba(102, 255, 102, 0.5), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+  }
+  
+  @keyframes pulse-yellow {
+    0%, 100% { 
+      box-shadow: 
+        0 0 30px rgba(255, 255, 102, 0.9), 
+        0 0 60px rgba(255, 255, 102, 0.6), 
+        0 0 90px rgba(255, 255, 102, 0.3), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+    50% { 
+      box-shadow: 
+        0 0 40px rgba(255, 255, 102, 1), 
+        0 0 80px rgba(255, 255, 102, 0.8), 
+        0 0 120px rgba(255, 255, 102, 0.5), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+  }
+  
+  @keyframes pulse-red {
+    0%, 100% { 
+      box-shadow: 
+        0 0 30px rgba(255, 68, 68, 0.9), 
+        0 0 60px rgba(255, 68, 68, 0.6), 
+        0 0 90px rgba(255, 68, 68, 0.3), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+    50% { 
+      box-shadow: 
+        0 0 40px rgba(255, 68, 68, 1), 
+        0 0 80px rgba(255, 68, 68, 0.8), 
+        0 0 120px rgba(255, 68, 68, 0.5), 
+        inset 0 4px 12px rgba(0, 0, 0, 0.3); 
+    }
+  }
+  
+  .semaforo-status {
+    width: 100%;
+  }
+  
+  .status-message {
+    display: flex;
+    align-items: center;
+    gap: var(--spaziatura-md);
+    padding: var(--spaziatura-md) var(--spaziatura-lg);
+    border-radius: var(--border-radius-medio);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.0107142857em;
+    text-align: left;
+    animation: materialSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--elevation-2);
+    transition: box-shadow var(--duration-medium-2) var(--easing-standard),
+                transform var(--duration-medium-2) var(--easing-standard);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background-color: var(--sfondo-bianco);
+    min-height: 48px;
+  }
+  
+  .status-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: materialIconFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s both;
+  }
+  
+  @keyframes materialIconFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  .status-message::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--duration-short-2) var(--easing-standard);
+  }
+  
+  .status-message:hover::before {
+    opacity: 1;
+  }
+  
+  .status-message:hover {
+    box-shadow: var(--elevation-4);
+  }
+  
+  .status-message.verde {
+    background-color: #E8F5E9;
+    color: #1B5E20;
+  }
+  
+  .status-message.verde .status-icon {
+    color: #4CAF50;
+  }
+  
+  .status-message.giallo {
+    background-color: #FFF8E1;
+    color: #E65100;
+  }
+  
+  .status-message.giallo .status-icon {
+    color: #FFC107;
+  }
+  
+  .status-message.rosso {
+    background-color: #FFEBEE;
+    color: #B71C1C;
+  }
+  
+  .status-message.rosso .status-icon {
+    color: #F44336;
+  }
+  
+  @keyframes materialSlideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.96);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  /* ========================================
+   * BUTTONS
+   * ======================================== */
+  .antifrode__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-sm);
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .antifrode__buttons button {
+    padding: var(--spaziatura-md) var(--spaziatura-lg);
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    -webkit-backdrop-filter: blur(10px); /* Safari */
+    backdrop-filter: blur(10px);
+    color: var(--testo-bianco);
+    transition: all var(--duration-medium-2) var(--easing-standard);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 0.0892857143em;
+    min-height: 44px;
+    width: 100%;
+    border: 2px solid;
+  }
+  
+  /* Pulsante Rosso */
+  .antifrode__buttons button:nth-child(1) {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.9) 0%, rgba(211, 47, 47, 0.95) 100%);
+    border-color: rgba(244, 67, 54, 0.5);
+    box-shadow: none;
+  }
+  
+  /* Pulsante Giallo */
+  .antifrode__buttons button:nth-child(2) {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.9) 0%, rgba(255, 179, 0, 0.95) 100%);
+    border-color: rgba(255, 193, 7, 0.5);
+    box-shadow: none;
+    color: #1a1a1a;
+  }
+  
+  /* Pulsante Verde */
+  .antifrode__buttons button:nth-child(3) {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.9) 0%, rgba(56, 142, 60, 0.95) 100%);
+    border-color: rgba(76, 175, 80, 0.5);
+    box-shadow: none;
+  }
+  
+  /* Ripple effect Material Design */
+  .antifrode__buttons button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width var(--duration-medium-4) var(--easing-standard), 
+                height var(--duration-medium-4) var(--easing-standard),
+                opacity var(--duration-short-2) var(--easing-standard);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .antifrode__buttons button:active::before {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+    transition: width var(--duration-short-2) var(--easing-standard), 
+                height var(--duration-short-2) var(--easing-standard),
+                opacity var(--duration-short-2) var(--easing-standard);
+  }
+  
+  /* Hover states colorati */
+  .antifrode__buttons button:nth-child(1):hover {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 1) 0%, rgba(211, 47, 47, 1) 100%);
+    border-color: rgba(244, 67, 54, 0.8);
+    transform: translateY(-3px);
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:nth-child(2):hover {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 1) 0%, rgba(255, 179, 0, 1) 100%);
+    border-color: rgba(255, 193, 7, 0.8);
+    transform: translateY(-3px);
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:nth-child(3):hover {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 1) 0%, rgba(56, 142, 60, 1) 100%);
+    border-color: rgba(76, 175, 80, 0.8);
+    transform: translateY(-3px);
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:active {
+    transform: translateY(0);
+  }
+  
+  .antifrode__buttons button:nth-child(1):active {
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:nth-child(2):active {
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:nth-child(3):active {
+    box-shadow: none;
+  }
+  
+  .antifrode__buttons button:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    outline-offset: 2px;
+    border-radius: 999px;
+  }
+  
+  /* Focus states colorati */
+  .antifrode__buttons button:nth-child(1):focus-visible {
+    outline-color: rgba(244, 67, 54, 0.8);
+  }
+  
+  .antifrode__buttons button:nth-child(2):focus-visible {
+    outline-color: rgba(255, 193, 7, 0.8);
+  }
+  
+  .antifrode__buttons button:nth-child(3):focus-visible {
+    outline-color: rgba(76, 175, 80, 0.8);
+  }
+  
+  .disclaimer {
+    font-size: 0.875rem;
+    color: var(--testo-grigio-scuro);
+    opacity: 0.7;
+    text-align: center;
+    margin-top: var(--spaziatura-lg);
+    font-style: italic;
+  }
+  
+  /* ========================================
+   * COLLAPSIBLES
+   * ======================================== */
+  .antifrode-collapsibles-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spaziatura-md);
+    margin-top: var(--spaziatura-sm);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+    contain: layout;
+  }
+  
+  .antifrode-collapsible {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    contain: layout;
+  }
+  
+  .antifrode-collapsible__header {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    padding: var(--spaziatura-md) 0;
+    border-radius: 0;
+    text-align: left;
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.87);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    overflow-x: hidden !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    min-height: 48px;
+    box-sizing: border-box;
+  }
+  
+  .antifrode-collapsible__header > span:first-child {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Ripple effect Material Design */
+  .antifrode-collapsible__header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .antifrode-collapsible__header:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 1;
+    transition: width 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .antifrode-collapsible__header:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  .antifrode-collapsible__header:focus {
+    outline: var(--border-normale) solid var(--colore-primario);
+    outline-offset: 2px;
+  }
+  
+  .antifrode-collapsible__icon {
+    color: rgba(0, 0, 0, 0.54);
+    transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    max-width: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.04);
+    text-align: center;
+    position: relative;
+    margin-left: auto;
+  }
+  
+  .antifrode-collapsible__icon.open {
+    background: rgba(var(--colore-primario-rgb), 0.12);
+    color: var(--colore-primario);
+  }
+  
+  .antifrode-collapsible__header:hover .antifrode-collapsible__icon {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  .antifrode-collapsible__header:hover .antifrode-collapsible__icon.open {
+    background: rgba(var(--colore-primario-rgb), 0.16);
+  }
+  
+  .antifrode-collapsible__content {
+    padding: var(--spaziatura-lg) 0 var(--spaziatura-lg) 0;
+    font-size: 0.9375rem;
+    background: transparent;
+    border-left: none;
+    margin-top: var(--spaziatura-sm);
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.75;
+    animation: antifrodeSlideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-x: hidden !important;
+    box-sizing: border-box;
+    contain: layout style;
+  }
+  
+  .antifrode-collapsibles-list > .antifrode-collapsible:last-child .antifrode-collapsible__content {
+    padding-bottom: var(--spaziatura-sm);
+  }
+  
+  @keyframes antifrodeSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ========================================
+     MEDIA QUERIES - MOBILE RESPONSIVE
+     ======================================== */
+
+  @media (max-width: 768px) {
+    /* Padding generale ridotto su mobile - contenuto a tutta larghezza */
+    .antifrode {
+      max-width: 100%;
+      padding: calc(var(--spaziatura-xl) + 3.75rem) var(--spaziatura-md) var(--spaziatura-lg) var(--spaziatura-md);
+      overflow-x: hidden;
+      margin: 0;
+    }
+
+    /* Titolo principale più piccolo */
+    .antifrode__intro h1,
+    .antifrode__main-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__intro {
+      padding: var(--spaziatura-sm) var(--spaziatura-md) var(--spaziatura-xl) var(--spaziatura-md);
+    }
+
+    .antifrode__intro p {
+      font-size: 1rem;
+      padding: 0;
+    }
+
+    /* Sezione How It Works - Steps in colonna */
+    .antifrode__how-it-works {
+      padding: 0 var(--spaziatura-md);
+      max-width: 100%;
+    }
+
+    .antifrode__how-it-works-title {
+      font-size: 1.5rem;
+    }
+
+    .antifrode__steps {
+      flex-direction: column;
+      gap: var(--spaziatura-lg);
+      padding: 0 var(--spaziatura-md);
+    }
+
+    .antifrode__step {
+      max-width: 100%;
+      min-height: auto;
+      padding: var(--spaziatura-lg);
+    }
+
+    .antifrode__step-title {
+      font-size: 1.125rem;
+      min-height: auto;
+    }
+
+    /* Sezione What We Analyze - Padding ridotto - full width */
+    .antifrode__what-we-analyze {
+      padding: var(--spaziatura-xl) var(--spaziatura-md);
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .antifrode__what-we-analyze-title {
+      font-size: 1.5rem;
+    }
+
+    .antifrode__analyze-list {
+      padding: var(--spaziatura-md);
+      gap: var(--spaziatura-sm);
+    }
+
+    .antifrode__analyze-item {
+      font-size: 0.9375rem;
+      padding: var(--spaziatura-sm) var(--spaziatura-md);
+      padding-left: calc(var(--spaziatura-md) + var(--spaziatura-md) + var(--spaziatura-xs));
+    }
+
+    /* Sezione Benefits - Grid a 1 colonna */
+    .antifrode__benefits {
+      padding: 0 var(--spaziatura-md);
+      max-width: 100%;
+    }
+
+    .antifrode__benefits-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__benefits-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spaziatura-lg);
+    }
+
+    .antifrode__benefit-card {
+      padding: var(--spaziatura-xl) var(--spaziatura-lg);
+      min-height: auto;
+    }
+
+    .antifrode__benefit-title {
+      font-size: 1.25rem;
+    }
+
+    .antifrode__benefit-description {
+      font-size: 0.9375rem;
+      max-width: 100%;
+    }
+
+    /* Sezione Fraud Report - Titoli ridotti - full width */
+    .antifrode__fraud-report {
+      padding: var(--spaziatura-xl) var(--spaziatura-md);
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .antifrode__fraud-report-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__fraud-report-intro {
+      font-size: 1rem;
+      padding: 0 var(--spaziatura-sm);
+    }
+
+    .antifrode__fraud-guide-title,
+    .antifrode__fraud-contacts-title {
+      font-size: 1.375rem;
+    }
+
+    .antifrode__fraud-steps {
+      grid-template-columns: 1fr;
+      gap: var(--spaziatura-md);
+    }
+
+    .antifrode__fraud-step {
+      padding: var(--spaziatura-lg);
+    }
+
+    .antifrode__fraud-contacts-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spaziatura-lg);
+    }
+
+    .antifrode__fraud-contact-card {
+      max-width: 100%;
+      padding: var(--spaziatura-xl) var(--spaziatura-lg);
+    }
+
+    /* Sezione Practices - Layout in colonna */
+    .antifrode__practices-wrapper {
+      padding: 0;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .antifrode__practices {
+      flex-direction: column;
+      min-height: auto;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .antifrode__practices-image {
+      min-height: 250px;
+      order: 1;
+    }
+
+    .antifrode__practices-content {
+      order: 2;
+      padding: var(--spaziatura-xl) var(--spaziatura-md);
+    }
+
+    .antifrode__practices-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__practices-subtitle {
+      font-size: 1rem;
+    }
+
+    /* Sezione Collapsibles */
+    .antifrode__collapsibles {
+      padding: var(--spaziatura-xl) var(--spaziatura-md);
+      max-width: 100%;
+    }
+
+    .antifrode__collapsibles h2 {
+      font-size: 1.75rem;
+    }
+
+    /* Sezione Chatbot - Semaforo in colonna - full width */
+    .antifrode__chatbot {
+      padding: var(--spaziatura-xl) var(--spaziatura-md);
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+
+    .semaforo-container {
+      grid-template-columns: 1fr;
+      gap: var(--spaziatura-xl);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .semaforo-visual-wrapper {
+      padding-top: 0;
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    .semaforo-visual {
+      width: 100px;
+      height: 270px;
+      padding: 20px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .semaforo-light {
+      width: 60px;
+      height: 60px;
+    }
+
+    .semaforo-info {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .semaforo-info h2 {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .semaforo-description {
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .antifrode__buttons {
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .status-message {
+      font-size: 0.8125rem;
+      padding: var(--spaziatura-sm) var(--spaziatura-md);
+    }
+
+    /* Divider */
+    .antifrode-divider {
+      margin: var(--spaziatura-xl) 0;
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* Media query per schermi di dimensioni medie (75% - tablet landscape) */
+  @media (min-width: 769px) and (max-width: 1023px) {
+    /* Padding generale ottimizzato per tablet */
+    .antifrode {
+      max-width: 100%;
+      padding: calc(var(--spaziatura-xl) + 3.75rem) var(--spaziatura-lg) var(--spaziatura-lg);
+      margin: 0 auto;
+    }
+
+    /* Titolo principale leggermente ridotto */
+    .antifrode__intro h1,
+    .antifrode__main-title {
+      font-size: 2rem;
+    }
+
+    .antifrode__intro p {
+      font-size: 1.0625rem;
+    }
+
+    /* Sezione How It Works - Steps in 2 colonne */
+    .antifrode__how-it-works {
+      padding: 0 var(--spaziatura-lg);
+    }
+
+    .antifrode__how-it-works-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__steps {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spaziatura-lg);
+      padding: 0;
+    }
+
+    .antifrode__step {
+      flex: 1 1 calc(50% - var(--spaziatura-lg) / 2);
+      min-width: 280px;
+      max-width: 100%;
+    }
+
+    /* Sezione What We Analyze - full width */
+    .antifrode__what-we-analyze {
+      padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .antifrode__what-we-analyze-title {
+      font-size: 1.75rem;
+    }
+
+    .antifrode__analyze-list {
+      padding: var(--spaziatura-lg);
+      max-width: 45rem;
+    }
+
+    /* Sezione Benefits - Grid a 2 colonne */
+    .antifrode__benefits {
+      padding: 0 var(--spaziatura-lg);
+    }
+
+    .antifrode__benefits-title {
+      font-size: 2rem;
+    }
+
+    .antifrode__benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spaziatura-lg);
+    }
+
+    .antifrode__benefit-card {
+      padding: var(--spaziatura-xl) var(--spaziatura-lg);
+    }
+
+    /* Sezione Fraud Report - full width */
+    .antifrode__fraud-report {
+      padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .antifrode__fraud-report-title {
+      font-size: 2rem;
+    }
+
+    .antifrode__fraud-report-intro {
+      font-size: 1.0625rem;
+    }
+
+    .antifrode__fraud-steps {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spaziatura-lg);
+    }
+
+    .antifrode__fraud-contacts-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spaziatura-lg);
+    }
+
+    /* Sezione Practices - Layout orizzontale ottimizzato */
+    .antifrode__practices-wrapper {
+      padding: 0 var(--spaziatura-lg);
+    }
+
+    .antifrode__practices {
+      flex-direction: row;
+    }
+
+    .antifrode__practices-image {
+      flex: 0 0 40%;
+      min-height: 400px;
+    }
+
+    .antifrode__practices-content {
+      flex: 1;
+      padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+    }
+
+    .antifrode__practices-title {
+      font-size: 2rem;
+    }
+
+    /* Sezione Collapsibles */
+    .antifrode__collapsibles {
+      padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+    }
+
+    .antifrode__collapsibles h2 {
+      font-size: 2rem;
+    }
+
+    /* Sezione Chatbot - Semaforo ottimizzato - full width */
+    .antifrode__chatbot {
+      padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      overflow-x: hidden;
+      overflow-y: visible;
+    }
+
+    .semaforo-container {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spaziatura-xl);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .semaforo-visual-wrapper {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .semaforo-visual {
+      width: 110px;
+      height: 290px;
+      box-sizing: border-box;
+    }
+
+    .semaforo-light {
+      width: 65px;
+      height: 65px;
+    }
+
+    .semaforo-info {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .semaforo-info h2 {
+      font-size: 1.75rem;
+      text-align: left;
+    }
+
+    .semaforo-description {
+      font-size: 1.0625rem;
+      text-align: left;
+    }
+
+    /* Divider */
+    .antifrode-divider {
+      margin: var(--spaziatura-xxl) auto;
+      max-width: calc(100% - 2 * var(--spaziatura-lg));
+    }
+  }
+
+  /* Media query per schermi molto piccoli */
+  @media (max-width: 480px) {
+    .antifrode {
+      padding: calc(var(--spaziatura-lg) + 3.75rem) 0 var(--spaziatura-md) 0;
+      max-width: 100%;
+    }
+
+    .antifrode__intro h1,
+    .antifrode__main-title {
+      font-size: 1.5rem;
+    }
+
+    .antifrode__intro p {
+      font-size: 0.9375rem;
+    }
+
+    .antifrode__how-it-works-title,
+    .antifrode__what-we-analyze-title,
+    .antifrode__benefits-title,
+    .antifrode__fraud-report-title,
+    .antifrode__practices-title,
+    .antifrode__collapsibles h2 {
+      font-size: 1.375rem;
+    }
+
+    .antifrode__step {
+      padding: var(--spaziatura-md);
+    }
+
+    .antifrode__step-number {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.25rem;
+    }
+
+    .antifrode__benefit-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .antifrode__benefit-card {
+      padding: var(--spaziatura-lg) var(--spaziatura-md);
+    }
+
+    .semaforo-visual {
+      width: 90px;
+      height: 240px;
+      padding: 15px;
+    }
+
+    .semaforo-light {
+      width: 55px;
+      height: 55px;
+    }
+
+    .antifrode__buttons button {
+      font-size: 0.8125rem;
+      padding: var(--spaziatura-sm) var(--spaziatura-md);
+      min-height: 40px;
+    }
+
+    .antifrode__practices-image {
+      min-height: 200px;
+    }
+  }
+
+ 

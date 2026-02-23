@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="SgamApp: la tua soluzione completa per la sicurezza digitale. Guide pratiche, assistente digitale educativo Sgamy e strumenti per proteggerti dalle truffe online."
+    />
+    <meta name="author" content="SgamApp" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon e manifest -->
+    <link rel="icon" type="image/svg+xml" href="/logo-favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1565D6" />
+
+    <!-- DNS Prefetch per risorse esterne (ottimizzazione mobile) -->
+    <link rel="dns-prefetch" href="https://sgamapp.onrender.com" />
+    <link rel="dns-prefetch" href="https://sgamy.onrender.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+    <!-- Preconnect Google Fonts (già ottimizzato) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <title>SgamApp</title>
+
+    <!-- Style inline con nonce -->
+    <style nonce="__NONCE__">
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif;
+        overflow-x: hidden;
+        scrollbar-width: none !important;
+      }
+      body::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      body::-webkit-scrollbar-track {
+        display: none !important;
+      }
+      body::-webkit-scrollbar-thumb {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body lang="it">
+    <div id="root"></div>
+
+    <!-- Script principale di Vite -->
+    <script type="module" nonce="__NONCE__" src="/src/main.tsx"></script>
+  </body>
+</html>

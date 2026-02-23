@@ -1,0 +1,1388 @@
+/**
+ * ========================================
+ * HOME SERVICES COMPONENT
+ * ========================================
+ * 
+ * Componente servizi homepage con cards
+ * Material Design con hover effects
+ * Chatbot promo card integrata
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * CHATBOT PROMO CARD
+ * ======================================== */
+
+.chatbot-promo-card {
+  max-width: 87.5rem; /* 1400px */
+  margin: var(--spaziatura-xl) auto;
+  padding: 0 0 var(--spaziatura-xl) 0;
+  background: transparent;
+  border-radius: 0;
+  border-bottom: 4px solid var(--colore-primario);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+  position: relative;
+}
+
+.square-card {
+  border-bottom: none !important;
+}
+
+.chatbot-promo-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Mission Promo Card - Overlay blu per la card missione */
+.mission-promo-card .square-card__title {
+  color: var(--testo-bianco);
+}
+
+.mission-promo-card .square-card__description {
+  color: var(--testo-bianco);
+}
+
+/* Grid per le due card quadrate */
+.home-services-grid {
+  max-width: 87.5rem; /* 1400px */
+  margin: 0 auto;
+  padding: 0 var(--spaziatura-md);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spaziatura-lg);
+  margin-top: calc(-1 * var(--spaziatura-xl));
+  margin-bottom: var(--spaziatura-xl);
+}
+
+/* Effetto scroll reveal per i quadrati - usa le classi globali in index.css */
+
+/* Card quadrate */
+.square-card {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 1;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -moz-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Firefox mobile: forza accelerazione hardware e preserva 3D */
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.square-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.square-card__inner {
+  -moz-transition: -moz-transform 0.6s;
+  transition: transform 0.6s;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Firefox mobile: forza accelerazione hardware */
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  -moz-will-change: transform;
+}
+
+.square-card.is-flipped .square-card__inner,
+.square-card.flipped .square-card__inner {
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.square-card.is-flipped .square-card__front,
+.square-card.flipped .square-card__front {
+  pointer-events: none;
+}
+
+.square-card.is-flipped .square-card__back,
+.square-card.flipped .square-card__back {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.square-card:not(.is-flipped):not(.flipped) .square-card__back {
+  pointer-events: none;
+}
+
+.square-card__front .square-card__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.square-card__back-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--colore-primario);
+  z-index: 1;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square-card__back:hover .square-card__back-background {
+  opacity: 0.7;
+}
+
+.square-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 2;
+  transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.square-card__front:hover .square-card__overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.square-card__front,
+.square-card__back {
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  /* Firefox mobile: forza accelerazione hardware e preserva 3D */
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -moz-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.square-card__front {
+  z-index: 2;
+  cursor: pointer;
+}
+
+.square-card__back {
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.square-card.is-flipped .square-card__front,
+.square-card.flipped .square-card__front {
+  z-index: 1;
+}
+
+.square-card.is-flipped .square-card__back,
+.square-card.flipped .square-card__back {
+  z-index: 2;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.square-card .chatbot-promo-card__content,
+.square-card__content {
+  position: relative;
+  z-index: 3;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: var(--spaziatura-xl) !important;
+  padding-bottom: var(--spaziatura-xxl) !important;
+  height: 100% !important;
+  gap: var(--spaziatura-md) !important;
+  text-align: center !important;
+  grid-template-columns: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.square-card__back .square-card__content {
+  z-index: 5 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  justify-content: center !important;
+  padding-top: var(--spaziatura-xl) !important;
+  pointer-events: none;
+}
+
+.square-card__back .square-card__text-wrapper {
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 6 !important;
+  margin-bottom: var(--spaziatura-xl) !important;
+}
+
+.square-card__back .square-card__description {
+  color: var(--testo-bianco) !important;
+  font-size: 1.1rem !important;
+  line-height: 1.6 !important;
+}
+
+.square-card .chatbot-promo-card__text-wrapper,
+.square-card__text-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: var(--spaziatura-sm) !important;
+  width: 100% !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin-top: 0 !important;
+  margin-bottom: auto !important;
+}
+
+.square-card .chatbot-promo-card__title,
+.square-card__title {
+  font-size: 1.75rem !important;
+  margin: 0 !important;
+  color: var(--colore-primario) !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.square-card .chatbot-promo-card__description,
+.square-card__description {
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  color: var(--testo-bianco) !important;
+  z-index: 6 !important;
+  position: relative;
+}
+
+.square-card .chatbot-promo-card__cta-wrapper,
+.square-card__cta-wrapper {
+  width: 100% !important;
+  min-width: auto !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+}
+
+.square-card__cta-button {
+  width: 100%;
+  padding: var(--spaziatura-md) var(--spaziatura-lg);
+  background: linear-gradient(
+    135deg,
+    var(--colore-primario) 0%,
+    var(--colore-intermedio) 100%
+  );
+  border: 2px solid var(--colore-primario);
+  border-radius: 999px;
+  color: var(--testo-bianco);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  box-shadow: none;
+  position: relative;
+  z-index: 10;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  overflow: hidden;
+  min-height: 44px;
+}
+
+.square-card__cta-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-4) var(--easing-standard),
+    height var(--duration-medium-4) var(--easing-standard),
+    opacity var(--duration-short-2) var(--easing-standard);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.square-card__cta-button:active::before {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: width var(--duration-short-2) var(--easing-standard),
+    height var(--duration-short-2) var(--easing-standard),
+    opacity var(--duration-short-2) var(--easing-standard);
+}
+
+.square-card__cta-button:hover {
+  background: linear-gradient(
+    135deg,
+    var(--colore-intermedio) 0%,
+    var(--colore-primario) 100%
+  );
+  border-color: var(--colore-intermedio);
+  transform: translateY(-3px);
+  box-shadow: none;
+}
+
+.square-card__cta-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.mission-promo-card .square-card__cta-button {
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  color: var(--colore-primario);
+  border-color: #ffffff;
+  box-shadow: none;
+}
+
+.mission-promo-card .square-card__cta-button::before {
+  background: rgba(21, 101, 214, 0.15);
+}
+
+.mission-promo-card .square-card__cta-button:hover {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    var(--sfondo-grigio-chiaro) 100%
+  );
+  border-color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: none;
+}
+
+.mission-promo-card .square-card__cta-button:active {
+  box-shadow: none;
+}
+
+.square-card__flip-back-button {
+  position: absolute !important;
+  top: var(--spaziatura-md) !important;
+  left: var(--spaziatura-md) !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 2px solid var(--colore-primario) !important;
+  border-radius: 50% !important;
+  color: var(--colore-primario) !important;
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  z-index: 30 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+
+.square-card__flip-back-button:hover {
+  background: var(--testo-bianco);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.square-card__flip-back-button:active {
+  transform: scale(0.95);
+}
+
+.chatbot-promo-card__content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--spaziatura-xl);
+  padding: var(--spaziatura-xl) var(--spaziatura-xxl);
+  position: relative;
+  z-index: 2;
+}
+
+.chatbot-promo-card__icon-wrapper {
+  width: 363px;
+  height: 363px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+.chatbot-promo-card__icon {
+  width: 363px;
+  height: 363px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  /* Aspect ratio per prevenire layout shift */
+  aspect-ratio: 1;
+}
+
+.chatbot-promo-card__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaziatura-sm);
+}
+
+.chatbot-promo-card__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--colore-primario);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.chatbot-promo-card__description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--testo-grigio-scuro);
+  margin: 0;
+  font-weight: 400;
+}
+
+.chatbot-promo-card__input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spaziatura-md);
+  min-width: 400px;
+  max-width: 500px;
+}
+
+.chatbot-promo-card__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.chatbot-promo-card__input {
+  flex: 1;
+  border: var(--border-normale) solid var(--sfondo-grigio-medio);
+  border-radius: var(--border-radius-grande);
+  outline: none;
+  background: var(--sfondo-bianco);
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--testo-grigio-scuro);
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  box-shadow: var(--elevation-2);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.chatbot-promo-card__input:hover {
+  border-color: var(--sfondo-grigio-medio);
+  box-shadow: var(--elevation-4);
+  transform: scale(1.02);
+}
+
+.chatbot-promo-card__input:focus {
+  border-color: var(--sfondo-grigio-medio);
+  box-shadow: var(--elevation-1);
+  outline: none;
+}
+
+.chatbot-promo-card__input:focus-visible {
+  outline: none;
+  box-shadow: var(--elevation-1);
+}
+
+.chatbot-promo-card__input::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+}
+
+/* Send button - similar to chatbot modal */
+.chatbot-promo-card__send-btn {
+  background: linear-gradient(
+    135deg,
+    var(--colore-primario) 0%,
+    rgba(var(--colore-primario-rgb), 0.9) 100%
+  );
+  border: none;
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 1.25rem;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2), 0 2px 2px rgba(0, 0, 0, 0.14);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.chatbot-promo-card__send-btn:not(:disabled) {
+  animation: sendPulse 2s ease-in-out infinite;
+}
+
+@keyframes sendPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
+}
+
+.chatbot-promo-card__send-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.chatbot-promo-card__send-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.chatbot-promo-card__send-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.chatbot-promo-card__send-btn:hover:not(:disabled) {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--colore-primario-rgb), 0.95) 0%,
+    var(--colore-primario) 100%
+  );
+  box-shadow: 0 6px 10px rgba(var(--colore-primario-rgb), 0.4),
+    0 4px 4px rgba(var(--colore-primario-rgb), 0.3);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.chatbot-promo-card__send-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.14);
+}
+
+.chatbot-promo-card__send-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.chatbot-promo-card__send-btn:disabled::before {
+  display: none;
+}
+
+/* Download button wrapper */
+.chatbot-promo-card__download-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: calc(var(--spaziatura-xl) + var(--spaziatura-lg));
+  gap: var(--spaziatura-md);
+  padding: var(--spaziatura-md);
+  background: linear-gradient(
+    135deg,
+    rgba(21, 101, 214, 0.05) 0%,
+    rgba(21, 101, 214, 0.02) 100%
+  );
+  border-radius: var(--border-radius-grande);
+  border: 1px solid rgba(21, 101, 214, 0.1);
+}
+
+.chatbot-promo-card__download-text-info {
+  font-size: 1rem;
+  color: var(--colore-primario, #1565d6);
+  margin: 0;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  max-width: 100%;
+}
+
+.chatbot-promo-card__download-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: linear-gradient(
+    135deg,
+    var(--colore-primario, #1565d6) 0%,
+    var(--colore-primario-scuro, #1565c0) 100%
+  );
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 28px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 240px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(21, 101, 214, 0.3),
+    0 2px 4px -1px rgba(21, 101, 214, 0.2), 0 0 0 1px rgba(21, 101, 214, 0.1);
+  border: none;
+}
+
+/* Ripple effect for download button */
+.chatbot-promo-card__download-link::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1),
+    height 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chatbot-promo-card__download-link:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.chatbot-promo-card__download-link:hover {
+  background: linear-gradient(
+    135deg,
+    var(--colore-primario-scuro, #1565c0) 0%,
+    var(--colore-primario, #1565d6) 100%
+  );
+  box-shadow: 0 8px 12px -2px rgba(21, 101, 214, 0.4),
+    0 4px 6px -1px rgba(21, 101, 214, 0.3), 0 0 0 1px rgba(21, 101, 214, 0.2);
+  transform: translateY(-2px);
+}
+
+.chatbot-promo-card__download-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px -1px rgba(21, 101, 214, 0.3),
+    0 1px 2px -1px rgba(21, 101, 214, 0.2);
+}
+
+.chatbot-promo-card__download-link:focus-visible {
+  outline: 2px solid var(--colore-primario, #1976d2);
+  outline-offset: 2px;
+}
+
+.chatbot-promo-card__download-text {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+ * RESPONSIVE - 75% ZOOM / TABLET LARGE
+ * ======================================== */
+
+@media (max-width: 1440px) and (min-width: 769px) {
+  /* Grid - mantiene layout desktop con dimensioni originali */
+  .home-services-grid {
+    max-width: 100% !important;
+    padding: 0 var(--spaziatura-lg) !important;
+    gap: var(--spaziatura-lg) !important;
+  }
+
+  /* Square cards - mantengono dimensioni desktop */
+  .home-services-grid .square-card {
+    aspect-ratio: 1 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .home-services-grid .square-card__content {
+    padding: var(--spaziatura-lg) !important;
+    padding-bottom: var(--spaziatura-xl) !important;
+  }
+
+  .home-services-grid .square-card__title {
+    font-size: 1.5rem !important;
+  }
+
+  .home-services-grid .square-card__cta-button {
+    font-size: 0.9375rem !important;
+    padding: var(--spaziatura-sm) var(--spaziatura-md) !important;
+  }
+
+  /* Immagini di background - occupano tutto il quadrato senza spazi bianchi */
+  .home-services-grid .square-card__front .square-card__background {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__front,
+  .home-services-grid .square-card__back {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .home-services-grid .square-card__inner {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  /* Chatbot promo card - riduzione dimensioni per evitare tagli */
+  .chatbot-promo-card {
+    max-width: 100%;
+    margin: var(--spaziatura-lg) auto;
+    padding: 0 var(--spaziatura-lg) var(--spaziatura-lg);
+  }
+
+  .chatbot-promo-card__content {
+    gap: var(--spaziatura-lg) !important;
+    padding: var(--spaziatura-lg) var(--spaziatura-xl) !important;
+  }
+
+  .chatbot-promo-card__icon-wrapper {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  .chatbot-promo-card__icon {
+    width: 280px !important;
+    height: 280px !important;
+  }
+
+  .chatbot-promo-card__title {
+    font-size: 2rem !important;
+  }
+
+  .chatbot-promo-card__description {
+    font-size: 1.125rem !important;
+  }
+
+  .chatbot-promo-card__input-section {
+    min-width: 350px !important;
+    max-width: 450px !important;
+  }
+
+  .chatbot-promo-card__input {
+    font-size: 0.9rem !important;
+    padding: 0.45rem 0.9rem !important;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 769px) {
+  /* Grid - mantiene layout desktop con dimensioni originali */
+  .home-services-grid {
+    max-width: 100% !important;
+    padding: 0 var(--spaziatura-md) !important;
+    gap: var(--spaziatura-lg) !important;
+  }
+
+  /* Square cards - mantengono dimensioni desktop (stesse del desktop) */
+  .home-services-grid .square-card {
+    aspect-ratio: 1 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .home-services-grid .square-card__content {
+    padding: var(--spaziatura-md) !important;
+    padding-bottom: var(--spaziatura-lg) !important;
+  }
+
+  .home-services-grid .square-card__title {
+    font-size: 1.375rem !important;
+  }
+
+  .home-services-grid .square-card__cta-button {
+    font-size: 0.875rem !important;
+    padding: var(--spaziatura-xs) var(--spaziatura-sm) !important;
+  }
+
+  /* Immagini di background - occupano tutto il quadrato senza spazi bianchi */
+  .home-services-grid .square-card__front .square-card__background {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__front,
+  .home-services-grid .square-card__back {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .home-services-grid .square-card__inner {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+  }
+
+  /* Ulteriore riduzione per viewport più piccole */
+  .chatbot-promo-card {
+    padding: 0 var(--spaziatura-md) var(--spaziatura-md);
+  }
+
+  .chatbot-promo-card__content {
+    gap: var(--spaziatura-md) !important;
+    padding: var(--spaziatura-md) var(--spaziatura-lg) !important;
+  }
+
+  .chatbot-promo-card__icon-wrapper {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .chatbot-promo-card__icon {
+    width: 240px !important;
+    height: 240px !important;
+  }
+
+  .chatbot-promo-card__title {
+    font-size: 1.75rem !important;
+  }
+
+  .chatbot-promo-card__description {
+    font-size: 1rem !important;
+  }
+
+  .chatbot-promo-card__input-section {
+    min-width: 300px !important;
+    max-width: 400px !important;
+  }
+
+  .chatbot-promo-card__input {
+    font-size: 0.875rem !important;
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE - Parla con Sgamy
+ * ======================================== */
+
+@media (max-width: 768px) {
+  /* Grid mobile - una colonna */
+  .home-services-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--spaziatura-xl) !important;
+    padding: 0 var(--spaziatura-md) !important;
+    margin-top: var(--spaziatura-md) !important;
+    margin-bottom: var(--spaziatura-lg) !important;
+    justify-items: center !important;
+  }
+
+  /* Square cards - ridotte e centrate su mobile */
+  .home-services-grid article {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    -webkit-transform: translateY(0) !important;
+  }
+
+  .home-services-grid article.scroll-reveal-hidden {
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    -webkit-transform: translateY(0) !important;
+  }
+
+  .home-services-grid .square-card {
+    aspect-ratio: 1 !important;
+    max-width: 85% !important;
+    width: 85% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 200px !important;
+  }
+
+  /* Immagini di background - occupano tutto il quadrato senza spazi bianchi */
+  .home-services-grid .square-card__front .square-card__background {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__front,
+  .home-services-grid .square-card__back {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .home-services-grid .square-card__inner {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__content {
+    padding: var(--spaziatura-lg) !important;
+    padding-bottom: var(--spaziatura-xl) !important;
+  }
+
+  .home-services-grid .square-card__title {
+    font-size: 1.5rem !important;
+  }
+
+  .home-services-grid .square-card__cta-button {
+    font-size: 0.9375rem !important;
+    padding: var(--spaziatura-sm) var(--spaziatura-md) !important;
+  }
+
+  /* Chatbot promo card - layout verticale su mobile */
+  .chatbot-promo-card {
+    margin: var(--spaziatura-lg) auto;
+    padding: 0 var(--spaziatura-md) var(--spaziatura-lg);
+  }
+
+  .chatbot-promo-card__content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--spaziatura-lg) !important;
+    padding: var(--spaziatura-lg) var(--spaziatura-md) !important;
+    text-align: center !important;
+  }
+
+  /* Icona ridotta su mobile */
+  .chatbot-promo-card__icon-wrapper {
+    width: 200px !important;
+    height: 200px !important;
+    max-width: 100% !important;
+  }
+
+  .chatbot-promo-card__icon {
+    width: 200px !important;
+    height: 200px !important;
+    max-width: 100% !important;
+  }
+
+  /* Testo centrato e ridotto su mobile */
+  .chatbot-promo-card__text-wrapper {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .chatbot-promo-card__title {
+    font-size: 1.75rem !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .chatbot-promo-card__description {
+    font-size: 1rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    padding: 0 var(--spaziatura-sm) !important;
+  }
+
+  /* Input section centrata e adattata su mobile */
+  .chatbot-promo-card__input-section {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+    padding: 0 !important;
+  }
+
+  .chatbot-promo-card__input-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .chatbot-promo-card__input {
+    width: 100% !important;
+    font-size: 1rem !important;
+    padding: var(--spaziatura-md) var(--spaziatura-lg) !important;
+    min-height: 44px !important; /* Touch target minimo */
+  }
+
+  .chatbot-promo-card__send-btn {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+
+  /* Download wrapper centrato su mobile */
+  .chatbot-promo-card__download-wrapper {
+    width: 100% !important;
+    margin-top: var(--spaziatura-lg) !important;
+    padding: var(--spaziatura-md) !important;
+  }
+
+  .chatbot-promo-card__download-text-info {
+    font-size: 0.875rem !important;
+    padding: 0 var(--spaziatura-xs) !important;
+  }
+
+  .chatbot-promo-card__download-link {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding: var(--spaziatura-md) var(--spaziatura-lg) !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* ========================================
+ * MOBILE SMALL - Ottimizzazioni per schermi piccoli
+ * ======================================== */
+
+@media (max-width: 480px) {
+  /* Square cards - ridotte e centrate anche su schermi piccoli */
+  .home-services-grid {
+    gap: var(--spaziatura-lg) !important;
+    padding: 0 var(--spaziatura-sm) !important;
+    justify-items: center !important;
+  }
+
+  .home-services-grid article {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .home-services-grid .square-card {
+    aspect-ratio: 1 !important;
+    max-width: 90% !important;
+    width: 90% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Immagini di background - occupano tutto il quadrato senza spazi bianchi */
+  .home-services-grid .square-card__front .square-card__background {
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__front,
+  .home-services-grid .square-card__back {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .home-services-grid .square-card__inner {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .home-services-grid .square-card__content {
+    padding: var(--spaziatura-md) !important;
+    padding-bottom: var(--spaziatura-lg) !important;
+  }
+
+  .home-services-grid .square-card__title {
+    font-size: 1.25rem !important;
+  }
+
+  .home-services-grid .square-card__cta-button {
+    font-size: 0.875rem !important;
+    padding: var(--spaziatura-xs) var(--spaziatura-sm) !important;
+  }
+
+  .chatbot-promo-card {
+    padding: 0 var(--spaziatura-sm) var(--spaziatura-md);
+  }
+
+  .chatbot-promo-card__content {
+    padding: var(--spaziatura-md) var(--spaziatura-sm) !important;
+    gap: var(--spaziatura-md) !important;
+  }
+
+  /* Icona ancora più piccola su schermi piccoli */
+  .chatbot-promo-card__icon-wrapper {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .chatbot-promo-card__icon {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .chatbot-promo-card__title {
+    font-size: 1.5rem !important;
+  }
+
+  .chatbot-promo-card__description {
+    font-size: 0.9375rem !important;
+  }
+
+  .chatbot-promo-card__input {
+    font-size: 0.9375rem !important;
+    padding: var(--spaziatura-sm) var(--spaziatura-md) !important;
+  }
+
+  .chatbot-promo-card__download-text-info {
+    font-size: 0.8125rem !important;
+  }
+
+  .chatbot-promo-card__download-link {
+    font-size: 0.8125rem !important;
+    padding: var(--spaziatura-sm) var(--spaziatura-md) !important;
+  }
+}
+
+/* ========================================
+ * FIX FIREFOX MOBILE - 3D FLIP CARD
+ * ======================================== */
+
+@-moz-document url-prefix() {
+  @media (max-width: 768px) {
+    /* Firefox mobile: fix per preserve-3d */
+    .square-card {
+      -moz-perspective: 1000px !important;
+      perspective: 1000px !important;
+      -moz-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+      -moz-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+    }
+
+    .square-card__inner {
+      -moz-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      -moz-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+      -moz-will-change: transform !important;
+      will-change: transform !important;
+    }
+
+    .square-card__front,
+    .square-card__back {
+      -moz-backface-visibility: hidden !important;
+      backface-visibility: hidden !important;
+      -moz-transform-style: preserve-3d !important;
+      transform-style: preserve-3d !important;
+      -moz-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+    }
+
+    .square-card__back {
+      -moz-transform: rotateY(180deg) translateZ(0) !important;
+      transform: rotateY(180deg) translateZ(0) !important;
+    }
+
+    .square-card.is-flipped .square-card__inner,
+    .square-card.flipped .square-card__inner {
+      -moz-transform: rotateY(180deg) translateZ(0) !important;
+      transform: rotateY(180deg) translateZ(0) !important;
+    }
+
+    /* Firefox mobile: fix per visibilità contenuto retro */
+    .square-card__back-background {
+      z-index: 1 !important;
+      -moz-transform: translateZ(0) !important;
+      transform: translateZ(0) !important;
+    }
+
+    .square-card__back .square-card__content {
+      z-index: 10 !important;
+      position: relative !important;
+      -moz-transform: translateZ(1px) !important;
+      transform: translateZ(1px) !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      display: flex !important;
+    }
+
+    .square-card__back .square-card__text-wrapper {
+      z-index: 11 !important;
+      position: relative !important;
+      -moz-transform: translateZ(2px) !important;
+      transform: translateZ(2px) !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .square-card__back .square-card__description {
+      z-index: 12 !important;
+      position: relative !important;
+      -moz-transform: translateZ(3px) !important;
+      transform: translateZ(3px) !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: var(--testo-bianco) !important;
+      display: block !important;
+    }
+
+    /* Firefox mobile: fix layout per renderlo identico a Chrome mobile */
+    /* Resetta i transform globali che potrebbero interferire */
+    .home-services-grid,
+    .home-services-grid article {
+      -moz-transform: none !important;
+      transform: none !important;
+      -moz-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+      will-change: auto !important;
+      -moz-will-change: auto !important;
+      contain: none !important;
+      -moz-contain: none !important;
+    }
+
+    /* Assicura che i contenitori non abbiano padding/margin extra */
+    .home-services-grid {
+      padding: 0 var(--spaziatura-md) !important;
+      margin-top: var(--spaziatura-md) !important;
+      margin-bottom: var(--spaziatura-lg) !important;
+      gap: var(--spaziatura-xl) !important;
+    }
+
+    .home-services-grid article {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    /* Fix per chatbot-promo-card - rimuove interferenze */
+    .chatbot-promo-card {
+      -moz-transform: none !important;
+      transform: none !important;
+      -moz-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+      will-change: auto !important;
+      -moz-will-change: auto !important;
+      contain: none !important;
+      -moz-contain: none !important;
+      margin: var(--spaziatura-lg) auto !important;
+      padding: 0 var(--spaziatura-md) var(--spaziatura-lg) !important;
+    }
+
+    .chatbot-promo-card__content {
+      -moz-transform: none !important;
+      transform: none !important;
+      -moz-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+    }
+
+    /* Uniforma le ombre a Chrome mobile */
+    .square-card {
+      -moz-box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.1) !important;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .square-card:hover {
+      -moz-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.15) !important;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    /* Assicura che i contenuti non vengano tagliati */
+    .square-card__content,
+    .chatbot-promo-card__content,
+    .chatbot-promo-card__input-section,
+    .chatbot-promo-card__download-wrapper {
+      -moz-transform: none !important;
+      transform: none !important;
+    }
+  }
+}

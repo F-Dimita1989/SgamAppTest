@@ -1,0 +1,107 @@
+{
+  "name": "SgamApp - Sicurezza Digitale",
+  "short_name": "SgamApp",
+  "description": "SgamApp: la tua soluzione completa per la sicurezza digitale. Guide pratiche, assistente digitale educativo Sgamy e strumenti per proteggerti dalle truffe online.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F4FA",
+  "theme_color": "#1565D6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "it",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo-favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "security", "utilities"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Guide",
+      "short_name": "Guide",
+      "description": "Accedi alle guide di sicurezza digitale",
+      "url": "/guide",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Protezione Anti-Frode",
+      "short_name": "Anti-Frode",
+      "description": "Proteggi te stesso dalle truffe online",
+      "url": "/servizio-antifrode",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Glossario",
+      "short_name": "Glossario",
+      "description": "Dizionario dei termini di sicurezza digitale",
+      "url": "/glossario",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Traduttore Generazionale",
+      "short_name": "Traduttore",
+      "description": "Traduci il linguaggio dei giovani",
+      "url": "/traduttore-generazionale",
+      "icons": [
+        {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

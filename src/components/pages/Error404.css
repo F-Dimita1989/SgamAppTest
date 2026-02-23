@@ -1,0 +1,411 @@
+/**
+ * ========================================
+ * ERROR 404 PAGE
+ * ========================================
+ * 
+ * Pagina di errore 404 con animazioni
+ * Usa il Design System (DesignSystem.css)
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * PAGE CONTAINER
+ * ======================================== */
+
+.error404-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh; /* Dynamic viewport height - iOS/Android */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+  background: var(--sfondo-principale);
+  overflow: hidden;
+  text-align: center;
+}
+
+/* ========================================
+ * BACKGROUND DECORATIVE
+ * ======================================== */
+
+.error404-background {
+  display: none;
+}
+
+/* ========================================
+ * CONTENT
+ * ======================================== */
+
+.error404-content {
+  position: relative;
+  z-index: var(--z-index-base);
+  max-width: 50rem; /* 800px */
+  width: 100%;
+}
+
+/* ========================================
+ * IMAGE SGAMY TRISTE
+ * ======================================== */
+
+.error404-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spaziatura-xl);
+  animation-delay: 0.1s;
+}
+
+.error404-image {
+  max-width: clamp(180px, 22vw, 280px);
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 var(--spaziatura-xs) var(--spaziatura-md) rgba(var(--colore-primario-rgb), 0.2));
+}
+
+/* ========================================
+ * NUMBER 404
+ * ======================================== */
+
+.error404-number-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spaziatura-md);
+  margin-bottom: var(--spaziatura-xxl);
+}
+
+.error404-number {
+  font-size: clamp(6rem, 15vw, 12rem);
+  font-weight: 900;
+  background: var(--gradiente-blu-principale);
+  background-clip: text; /* Standard - Firefox, Chrome, Safari, Edge */
+  -webkit-background-clip: text; /* Chrome, Safari (prefisso legacy) */
+  color: transparent; /* Firefox - usa color invece di -webkit-text-fill-color */
+  -webkit-text-fill-color: transparent; /* Chrome, Safari */
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(var(--colore-primario-rgb), 0.3);
+}
+
+/* ========================================
+ * HEADER & TEXT
+ * ======================================== */
+
+.error404-header {
+  margin-bottom: var(--spaziatura-xxl);
+  animation-delay: 0.3s;
+}
+
+.error404-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--testo-nero);
+  margin-bottom: var(--spaziatura-md);
+  position: relative;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.error404-title::after {
+  content: '';
+  position: absolute;
+  bottom: calc(-1 * var(--spaziatura-xs));
+  left: 0;
+  width: 100%;
+  height: var(--spaziatura-xs);
+  background: var(--gradiente-blu-principale);
+  border-radius: var(--border-radius-grande);
+  transform-origin: left center;
+  animation: expandWidthLine var(--durata-animazione-normale) var(--easing-out) forwards 1s;
+}
+
+@keyframes expandWidthLine {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.error404-description {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--testo-grigio-scuro);
+  line-height: 1.6;
+  max-width: 37.5rem; /* 600px */
+  margin: 0 auto;
+}
+
+/* ========================================
+ * ACTION BUTTONS
+ * ======================================== */
+
+.error404-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spaziatura-md);
+  margin: 0 auto var(--spaziatura-xxl);
+  width: 100%;
+  max-width: 37.5rem; /* 600px */
+  animation-delay: 0.6s;
+}
+
+.error404-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spaziatura-xs);
+  min-width: 12.5rem; /* 200px */
+  flex: 0 1 auto;
+}
+
+.error404-btn .btn-icon-left {
+  font-size: 1.1em;
+  transition: transform var(--duration-medium-2) var(--easing-standard);
+}
+
+.error404-btn:hover .btn-icon-left {
+  transform: translateX(-2px);
+}
+
+/* ========================================
+ * SUGGESTIONS
+ * ======================================== */
+
+.error404-suggestions {
+  padding: var(--spaziatura-lg);
+  background: var(--sfondo-bianco);
+  border-radius: var(--border-radius-grande);
+  box-shadow: var(--ombra-card);
+  animation-delay: 0.9s;
+  width: 100%;
+  max-width: 37.5rem; /* 600px */
+  margin: 0 auto;
+}
+
+.error404-suggestions-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--testo-nero);
+  margin-bottom: var(--spaziatura-md);
+}
+
+.error404-suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spaziatura-sm);
+}
+
+.error404-suggestions-list li {
+  display: inline-block;
+}
+
+.error404-suggestion-link {
+  display: inline-block;
+  padding: var(--spaziatura-xs) var(--spaziatura-md);
+  background: var(--sfondo-bianco);
+  color: var(--colore-primario);
+  text-decoration: none;
+  border-radius: var(--border-radius-medio);
+  border: var(--border-normale) solid var(--colore-primario);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all var(--duration-medium-2) var(--easing-standard);
+}
+
+.error404-suggestion-link:hover,
+.error404-suggestion-link:focus {
+  background: var(--colore-primario);
+  color: var(--testo-bianco);
+  border-color: var(--colore-primario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--colore-primario-rgb), 0.3);
+  outline: none;
+}
+
+/* ========================================
+ * ACCESSIBILITY
+ * ======================================== */
+
+/* Focus visibile per navigazione da tastiera */
+.error404-btn:focus-visible,
+.error404-suggestion-link:focus-visible {
+  outline: 3px solid var(--colore-primario);
+  outline-offset: 3px;
+}
+
+/* Riduzione movimento per utenti con preferenza */
+@media (prefers-reduced-motion: reduce) {
+  .error404-background {
+    animation: none;
+  }
+  
+  .error404-title::after {
+    animation: none;
+    width: calc(var(--spaziatura-xxl) * 1.6);
+  }
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE (max-width: 768px)
+ * ======================================== */
+
+@media (max-width: 768px) {
+  /* Page container */
+  .error404-page {
+    padding: calc(var(--spaziatura-xl) + 3.75rem) var(--spaziatura-md) var(--spaziatura-xl);
+    min-height: calc(100vh - var(--navbar-height-mobile, 4rem));
+    min-height: calc(100svh - var(--navbar-height-mobile, 4rem));
+  }
+
+  /* Content */
+  .error404-content {
+    max-width: 100%;
+    padding: 0 var(--spaziatura-sm);
+  }
+
+  /* Image */
+  .error404-image-container {
+    margin-bottom: var(--spaziatura-lg);
+  }
+
+  .error404-image {
+    max-width: clamp(150px, 30vw, 220px);
+  }
+
+  /* Number 404 */
+  .error404-number-container {
+    gap: var(--spaziatura-xs);
+    margin-bottom: var(--spaziatura-xl);
+  }
+
+  .error404-number {
+    font-size: clamp(4rem, 20vw, 8rem);
+  }
+
+  /* Header & Text */
+  .error404-header {
+    margin-bottom: var(--spaziatura-xl);
+    padding: 0 var(--spaziatura-xs);
+  }
+
+  .error404-title {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    margin-bottom: var(--spaziatura-sm);
+  }
+
+  .error404-title::after {
+    left: 0;
+    width: 100%;
+    transform-origin: left center;
+  }
+
+  .error404-description {
+    font-size: clamp(0.9375rem, 3vw, 1.125rem);
+    padding: 0 var(--spaziatura-xs);
+  }
+
+  /* Action buttons */
+  .error404-actions {
+    flex-direction: column;
+    gap: var(--spaziatura-sm);
+    margin-bottom: var(--spaziatura-xl);
+    padding: 0 var(--spaziatura-sm);
+  }
+
+  .error404-btn {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+  }
+
+  /* Suggestions */
+  .error404-suggestions {
+    padding: var(--spaziatura-md);
+    margin: 0 var(--spaziatura-sm);
+    max-width: calc(100% - var(--spaziatura-md));
+  }
+
+  .error404-suggestions-title {
+    font-size: 1rem;
+    margin-bottom: var(--spaziatura-sm);
+  }
+
+  .error404-suggestions-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spaziatura-xs);
+  }
+
+  .error404-suggestions-list li {
+    width: 100%;
+  }
+
+  .error404-suggestion-link {
+    width: 100%;
+    text-align: center;
+    padding: var(--spaziatura-sm) var(--spaziatura-md);
+    font-size: 0.875rem;
+  }
+}
+
+/* ========================================
+ * SMALL MOBILE (max-width: 480px)
+ * ======================================== */
+
+@media (max-width: 480px) {
+  .error404-page {
+    padding: calc(var(--spaziatura-lg) + 3.75rem) var(--spaziatura-sm) var(--spaziatura-lg);
+  }
+
+  .error404-content {
+    padding: 0;
+  }
+
+  .error404-image {
+    max-width: clamp(120px, 35vw, 180px);
+  }
+
+  .error404-number {
+    font-size: clamp(3rem, 25vw, 6rem);
+  }
+
+  .error404-title {
+    font-size: clamp(1.25rem, 7vw, 1.875rem);
+  }
+
+  .error404-description {
+    font-size: clamp(0.875rem, 3.5vw, 1rem);
+  }
+
+  .error404-actions {
+    padding: 0;
+  }
+
+  .error404-suggestions {
+    padding: var(--spaziatura-sm);
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .error404-suggestions-title {
+    font-size: 0.9375rem;
+  }
+
+  .error404-suggestion-link {
+    font-size: 0.8125rem;
+    padding: var(--spaziatura-xs) var(--spaziatura-sm);
+  }
+}

@@ -1,0 +1,287 @@
+/**
+ * ========================================
+ * FOOTER COMPONENT
+ * ========================================
+ * 
+ * Footer principale con link e contatti
+ * Material Design con ripple effects
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * FOOTER CONTAINER
+ * ======================================== */
+
+footer.footer {
+  padding: var(--spaziatura-xl) var(--spaziatura-lg) var(--spaziatura-md);
+  /* Safe areas iOS - rispetta home indicator */
+  padding-bottom: calc(var(--spaziatura-md) + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(var(--spaziatura-lg) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--spaziatura-lg) + env(safe-area-inset-right, 0px));
+  background-color: var(--colore-primario);
+  color: var(--testo-bianco);
+  margin-top: var(--spaziatura-md);
+  flex-shrink: 0;
+  box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 0 -2px 4px */
+  position: relative;
+  /* Fix Safari: z-index basso per non interferire con chatbot button */
+  z-index: 1;
+}
+
+/* ========================================
+ * FOOTER GRID
+ * ======================================== */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+  gap: var(--spaziatura-xxl);
+  column-gap: var(--spaziatura-xxl);
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-column h3 {
+  margin-bottom: var(--spaziatura-md);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--testo-bianco);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.0892857143em;
+}
+
+/* ========================================
+ * FOOTER LINKS
+ * ======================================== */
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spaziatura-md);
+  padding: var(--spaziatura-xs) 0;
+  margin: 0;
+  text-decoration: none;
+  color: var(--testo-bianco);
+  font-weight: 400;
+  font-size: 0.875rem;
+  transition: all var(--duration-short-4) cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: visible;
+  line-height: 1.5;
+  transform-origin: center;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Ripple effect Material per footer links */
+.footer-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-2) var(--easing-standard),
+              height var(--duration-medium-2) var(--easing-standard),
+              opacity var(--duration-medium-2) var(--easing-standard);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.footer-link:active::before {
+  width: 12.5rem; /* 200px */
+  height: 12.5rem; /* 200px */
+  opacity: 1;
+  transition: width var(--duration-short-2) var(--easing-standard),
+              height var(--duration-short-2) var(--easing-standard),
+              opacity var(--duration-short-2) var(--easing-standard);
+}
+
+.footer-link:hover {
+  color: var(--testo-bianco);
+  transform: translateY(-3px) scale(1.08) translateZ(0);
+  text-shadow: var(--ombra-leggera);
+}
+
+.footer-link:focus-visible {
+  color: var(--testo-bianco);
+  outline: var(--border-normale) solid rgba(255, 255, 255, 0.5);
+  outline-offset: 0.25rem; /* 4px */
+  border-radius: var(--border-radius-piccolo);
+  /* Fix per Brave mobile: previene rendering duplicato dell'outline */
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+/* ========================================
+ * FOOTER CONTACT
+ * ======================================== */
+
+.footer-column address {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  padding-left: var(--spaziatura-md);
+  font-style: normal;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+}
+
+.footer-contact {
+  display: block;
+  margin: var(--spaziatura-xs) 0;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0;
+  padding-right: 0 !important;
+  color: var(--testo-bianco);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: left;
+  width: 100%;
+}
+
+.footer-contact-link {
+  color: var(--testo-bianco);
+  text-decoration: none;
+  transition: color var(--duration-medium-2) ease, 
+              text-decoration var(--duration-medium-2) ease;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-contact-link:hover {
+  color: var(--testo-bianco);
+  text-decoration: underline;
+}
+
+/* ========================================
+ * FOOTER CONTENT
+ * ======================================== */
+
+footer.footer .content {
+  margin-top: var(--spaziatura-xl);
+  padding-top: var(--spaziatura-md);
+  border-top: var(--border-sottile) solid rgba(255, 255, 255, 0.12);
+  font-size: 0.75rem;
+  color: var(--testo-bianco);
+  text-align: center;
+  font-weight: 400;
+  /* Fix per Brave mobile: previene rendering duplicato */
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE
+ * ======================================== */
+
+@media screen and (max-width: 768px) {
+  /* Footer container - centrato verticalmente */
+  footer.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spaziatura-lg) var(--spaziatura-md);
+    padding-bottom: calc(var(--spaziatura-md) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Container interno centrato */
+  footer.footer .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Grid diventa una colonna centrata */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spaziatura-xl);
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Colonne centrate verticalmente */
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Titoli colonne centrati */
+  .footer-column h3 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: var(--spaziatura-md);
+  }
+
+  /* Nav centrata */
+  .footer-column nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Link centrati */
+  .footer-link {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Address centrato */
+  .footer-column address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Contatti centrati */
+  .footer-contact {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Content footer centrato */
+  footer.footer .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: var(--spaziatura-lg);
+  }
+}

@@ -1,0 +1,596 @@
+/**
+ * ========================================
+ * APP DOWNLOAD BANNER COMPONENT
+ * ========================================
+ * 
+ * Banner Material Design orizzontale per download app
+ * Con overlay blur e animazioni smooth
+ * Ottimizzato per iOS Safari
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * OVERLAY
+ * ======================================== */
+
+.app-download-banner-overlay {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* Fix per Safari mobile - usa viewport dinamico */
+  height: 100vh;
+  height: -webkit-fill-available;
+  height: 100svh;
+  background-color: rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000 !important;
+  padding: var(--spaziatura-lg);
+  animation: materialFadeIn var(--duration-short-4) var(--easing-standard);
+  /* Fix per Safari mobile - hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Assicura che l'overlay sia sempre visibile */
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Mobile: centraggio ottimizzato */
+@media (max-width: 768px) {
+  .app-download-banner-overlay {
+    padding: var(--spaziatura-md);
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex !important;
+    flex-direction: column;
+  }
+}
+
+/* ========================================
+ * BANNER CARD
+ * ======================================== */
+
+.app-download-banner {
+  background-color: var(--sfondo-bianco);
+  border-radius: 0;
+  box-shadow: var(--elevation-24);
+  max-width: 50rem; /* 800px */
+  width: 100%;
+  min-height: 18.75rem; /* 300px */
+  position: relative;
+  animation: materialSlideUp var(--duration-medium-2) var(--easing-standard);
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Mobile: banner più compatto e centrato */
+@media (max-width: 768px) {
+  .app-download-banner {
+    max-width: 100%;
+    width: 100%;
+    min-height: auto;
+    border-radius: var(--border-radius-medio);
+    margin: auto;
+    max-height: calc(100svh - 2 * var(--spaziatura-md));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    flex-shrink: 1;
+  }
+}
+
+/* ========================================
+ * CLOSE BUTTON
+ * ======================================== */
+
+.app-download-banner__close {
+  position: absolute;
+  top: 50%;
+  left: calc(50% + 25rem + var(--spaziatura-md)); /* 400px */
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem; /* 40px */
+  height: 2.5rem; /* 40px */
+  border-radius: var(--border-radius-rotondo);
+  overflow: visible;
+  box-shadow: var(--elevation-4);
+  pointer-events: auto;
+}
+
+/* Mobile: bottone chiusura in alto a destra */
+@media (max-width: 768px) {
+  .app-download-banner__close {
+    top: var(--spaziatura-sm);
+    right: var(--spaziatura-sm);
+    left: auto;
+    transform: none;
+  }
+}
+
+.app-download-banner__close-icon {
+  font-size: 2rem; /* 32px */
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.87);
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  display: block;
+}
+
+/* Ripple effect Material Design */
+.app-download-banner__close::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-4) var(--easing-standard),
+              height var(--duration-medium-4) var(--easing-standard);
+}
+
+.app-download-banner__close:active {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.app-download-banner__close:active::before {
+  width: 12.5rem; /* 200px */
+  height: 200px;
+}
+
+.app-download-banner__close:active .app-download-banner__close-icon {
+  transform: rotate(90deg) scale(1.1);
+}
+
+.app-download-banner__close:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: var(--elevation-8);
+  transform: translateY(-50%);
+}
+
+.app-download-banner__close:hover .app-download-banner__close-icon {
+  transform: rotate(90deg) scale(1.2);
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Mobile: hover senza transform */
+@media (max-width: 768px) {
+  .app-download-banner__close:hover {
+    transform: none;
+  }
+}
+
+.app-download-banner__close:focus-visible {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * CONTENT CONTAINER - HORIZONTAL LAYOUT
+ * ======================================== */
+
+.app-download-banner__content {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE - VERTICAL LAYOUT
+ * ======================================== */
+
+@media (max-width: 768px) {
+  .app-download-banner__content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ========================================
+ * IMAGE CONTAINER - LEFT SIDE (50%)
+ * ======================================== */
+
+.app-download-banner__image-container {
+  flex: 0 0 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-download-banner__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Aspect ratio per prevenire layout shift */
+  aspect-ratio: 3 / 2;
+}
+
+/* Mobile: immagine sopra che occupa tutto lo spazio disponibile */
+@media (max-width: 768px) {
+  .app-download-banner__image-container {
+    flex: 1 1 60%;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    /* Espande per occupare tutto lo spazio disponibile */
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    /* Occupa almeno il 60% dell'altezza disponibile */
+    flex-basis: 60%;
+  }
+
+  .app-download-banner__image {
+    width: 100%;
+    height: auto;
+    max-height: 40svh;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+/* ========================================
+ * TEXT CONTAINER - RIGHT SIDE (50%)
+ * ======================================== */
+
+.app-download-banner__text-container {
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spaziatura-xl) var(--spaziatura-lg);
+  gap: var(--spaziatura-md);
+  text-align: center;
+  background-color: var(--colore-primario);
+}
+
+/* Mobile: testo container sotto con padding ottimizzato */
+@media (max-width: 768px) {
+  .app-download-banner__content {
+    /* Assicura che l'immagine possa espandersi */
+    min-height: 0;
+    height: 100%;
+  }
+
+  .app-download-banner__text-container {
+    flex: 0 1 40%;
+    width: 100%;
+    padding: var(--spaziatura-lg) var(--spaziatura-md);
+    padding-top: calc(var(--spaziatura-lg) + var(--spaziatura-sm)); /* Spazio per bottone chiusura */
+    gap: var(--spaziatura-sm);
+    min-height: auto;
+    /* Centraggio perfetto del contenuto */
+    justify-content: center;
+  }
+}
+
+/* ========================================
+ * LOGOS
+ * ======================================== */
+
+.app-download-banner__logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spaziatura-md);
+  margin-bottom: 0;
+  margin-top: calc(var(--spaziatura-md) * -1);
+}
+
+.app-download-banner__logo-main,
+.app-download-banner__logo-partners {
+  height: 60px;
+  width: auto;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/* Mobile: loghi più piccoli */
+@media (max-width: 768px) {
+  .app-download-banner__logos {
+    margin-top: 0;
+    margin-bottom: var(--spaziatura-xs);
+    gap: var(--spaziatura-sm);
+  }
+
+  .app-download-banner__logo-main,
+  .app-download-banner__logo-partners {
+    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+  }
+}
+
+/* ========================================
+ * TITLE & DESCRIPTION
+ * ======================================== */
+
+.app-download-banner__title {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--testo-bianco);
+  margin: 0;
+  line-height: 1.33;
+  letter-spacing: 0;
+}
+
+.app-download-banner__description {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.5;
+  letter-spacing: 0.009375em;
+}
+
+/* Mobile: font size ottimizzati */
+@media (max-width: 768px) {
+  .app-download-banner__title {
+    font-size: 20px;
+    line-height: 1.4;
+    padding: 0 var(--spaziatura-xs);
+  }
+
+  .app-download-banner__description {
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 0 var(--spaziatura-xs);
+  }
+}
+
+/* ========================================
+ * ACTIONS
+ * ======================================== */
+
+.app-download-banner__actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--spaziatura-sm);
+}
+
+/* ========================================
+ * MATERIAL DESIGN BUTTON
+ * ======================================== */
+
+.app-download-banner__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spaziatura-md) var(--spaziatura-lg);
+  background-color: var(--sfondo-bianco);
+  color: var(--colore-primario);
+  text-decoration: none;
+  border-radius: 24px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.0892857143em;
+  text-transform: uppercase;
+  transition: all var(--duration-short-4) var(--easing-standard);
+  min-width: 160px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--elevation-2);
+  border: var(--border-normale) solid transparent;
+}
+
+/* Mobile: bottone full width */
+@media (max-width: 768px) {
+  .app-download-banner__link {
+    width: 100%;
+    min-width: auto;
+    padding: var(--spaziatura-md) var(--spaziatura-lg);
+    font-size: 13px;
+  }
+
+  .app-download-banner__actions {
+    width: 100%;
+    padding-top: var(--spaziatura-sm);
+  }
+}
+
+/* Ripple effect for button */
+.app-download-banner__link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(var(--colore-primario-rgb), 0.1);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-4) var(--easing-standard),
+              height var(--duration-medium-4) var(--easing-standard);
+}
+
+.app-download-banner__link:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+.app-download-banner__link:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--colore-intermedio);
+  box-shadow: var(--elevation-8);
+  transform: translateY(-1px);
+  border-color: var(--colore-primario);
+}
+
+.app-download-banner__link:active {
+  transform: translateY(0);
+  box-shadow: var(--elevation-2);
+}
+
+.app-download-banner__link:focus-visible {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+  border-color: var(--colore-primario);
+}
+
+.app-download-banner__link-text {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+ * MATERIAL DESIGN ANIMATIONS
+ * ======================================== */
+
+@keyframes materialSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes materialFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+ * HIGH CONTRAST MODE SUPPORT
+ * ======================================== */
+
+html[data-accessibility-contrast="high"] .app-download-banner {
+  border: var(--border-normale) solid #000000;
+  background-color: var(--sfondo-bianco);
+}
+
+html[data-accessibility-contrast="high"] .app-download-banner__close {
+  border: var(--border-normale) solid #000000;
+  background-color: var(--sfondo-bianco);
+}
+
+html[data-accessibility-contrast="high"] .app-download-banner__link {
+  background: #000000;
+  color: var(--testo-bianco);
+  border: var(--border-normale) solid #000000;
+}
+
+html[data-accessibility-contrast="high"] .app-download-banner__link:hover {
+  background: #333333;
+  border-color: #333333;
+}
+
+/* ========================================
+ * SAFARI MOBILE FIXES
+ * ======================================== */
+
+/* Fix specifico per Safari iOS mobile */
+@supports (-webkit-touch-callout: none) {
+  .app-download-banner-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: -webkit-fill-available;
+    height: 100svh;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10000 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    min-height: 100svh;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: 768px) {
+    .app-download-banner-overlay {
+      justify-content: flex-start !important;
+    }
+  }
+
+  .app-download-banner {
+    position: relative !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    margin: auto !important;
+    flex-shrink: 1 !important;
+  }
+
+  /* Fix per il bottone di chiusura su Safari mobile */
+  .app-download-banner__close {
+    position: absolute !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 10001 !important;
+    /* Assicura che sia cliccabile */
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile Safari: bottone chiusura in alto a destra */
+  @media (max-width: 768px) {
+    .app-download-banner__close {
+      top: var(--spaziatura-sm) !important;
+      right: var(--spaziatura-sm) !important;
+      left: auto !important;
+      transform: none !important;
+    }
+  }
+}
+
+/* Fix per Safari mobile - previene problemi con body position fixed */
+/* Nota: :has() non è supportato su Safari mobile più vecchio, 
+   quindi il fix viene gestito nel componente React */

@@ -1,0 +1,863 @@
+/**
+ * ========================================
+ * GUIDE CARDS COMPONENT
+ * ========================================
+ * 
+ * Componente cards per lista guide disponibili
+ * Material Design con grid responsive
+ * Sezione "come funzionano le guide" integrata
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * GUIDE CARD BASE (ex Card.css)
+ * ======================================== */
+
+.sg-guide-card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  line-height: 0;
+  vertical-align: top;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.sg-guide-card__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: block;
+  background: var(--sfondo-grigio-chiaro);
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.sg-guide-card__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: var(--transizione-transform);
+  transform: scale(1);
+  padding: 0;
+  margin: 0;
+  vertical-align: top;
+  line-height: 0;
+  aspect-ratio: 4 / 3;
+}
+
+.sg-guide-card:hover .sg-guide-card__img {
+  transform: scale(1.05);
+}
+
+.sg-guide-card__body {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  position: absolute !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+}
+
+.sg-guide-card__title {
+  font-size: 1.1rem;
+  margin: 0 0 var(--spaziatura-xs) 0;
+  font-weight: 700;
+  color: var(--testo-grigio-scuro);
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.sg-guide-card__desc {
+  font-size: 0.9rem;
+  color: var(--testo-grigio-scuro);
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.sg-guide-card__cta {
+  margin-top: var(--spaziatura-sm);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+/* ========================================
+ * LIST WRAPPER
+ * ======================================== */
+
+.guide-list-wrapper {
+  padding: calc(var(--spaziatura-xxl) + 3.75rem) var(--spaziatura-lg) var(--spaziatura-xxl); /* 60px */
+  background: transparent;
+  min-height: 100vh; /* Fallback */
+  min-height: 100svh; /* Dynamic viewport height per mobile iOS/Android */
+  overflow-x: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
+  /* Nasconde la scrollbar verticale ma mantiene lo scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE e Edge */
+}
+
+.guide-list-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Scrollbar visibile come nelle altre pagine - nessuna modifica speciale */
+
+/* ========================================
+ * SCROLL REVEAL DELAYS
+ * ======================================== */
+/* Delay progressivi per i tre quadrati "Come funzionano le guide" */
+.guide-steps .guide-step.scroll-reveal-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.guide-steps .guide-step.scroll-reveal-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.guide-steps .guide-step.scroll-reveal-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+/* Delay progressivi per le card delle guide (ogni 3 card) */
+.guide-list-item.scroll-reveal-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(2) {
+  transition-delay: 0.15s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(4) {
+  transition-delay: 0.1s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(5) {
+  transition-delay: 0.15s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(6) {
+  transition-delay: 0.2s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(7) {
+  transition-delay: 0.1s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(8) {
+  transition-delay: 0.15s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(9) {
+  transition-delay: 0.2s;
+}
+
+.guide-list-item.scroll-reveal-item:nth-child(10) {
+  transition-delay: 0.1s;
+}
+
+/* ========================================
+ * INTRO SECTION
+ * ======================================== */
+.guide-intro {
+  text-align: center;
+  margin-bottom: var(--spaziatura-xxl);
+  padding: var(--spaziatura-sm) 0 var(--spaziatura-xl) 0;
+  margin-top: calc(-1 * var(--spaziatura-xxl));
+}
+
+/* Second intro section (Guide disponibili) - more spacing from section above */
+.guide-intro-secondary {
+  margin-top: var(--spaziatura-xxl) !important;
+  margin-bottom: var(--spaziatura-xxl);
+}
+
+.guide-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--colore-primario);
+  margin: 0 0 var(--spaziatura-md) 0;
+  letter-spacing: -0.01562em;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.guide-main-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--colore-primario);
+  margin: var(--spaziatura-sm) auto 0 auto;
+  border-radius: var(--border-radius-piccolo);
+  animation: expandWidth 0.8s ease-out forwards 0.5s;
+  transform-origin: center;
+}
+
+/* Animazione expandWidth centralizzata in DesignSystem.css */
+
+.guide-intro p {
+  font-size: 1.125rem;
+  max-width: 50rem; /* 800px */
+  margin: 0 auto;
+  color: var(--testo-grigio-scuro);
+  opacity: 0.8;
+  line-height: 1.7;
+}
+
+/* ========================================
+ * HOW IT WORKS SECTION
+ * ======================================== */
+.guide-how-it-works-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+  padding: var(--spaziatura-xxl) var(--spaziatura-xl);
+  margin-bottom: var(--spaziatura-xxl);
+  margin-top: var(--spaziatura-lg);
+  margin-left: calc(-1 * var(--spaziatura-lg));
+  margin-right: calc(-1 * var(--spaziatura-lg));
+  width: calc(100% + 2 * var(--spaziatura-lg));
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.guide-how-it-works-wrapper:hover {
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.3),
+    0 6px 24px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.guide-how-it-works-container {
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.guide-how-it-works-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--testo-bianco);
+  text-align: center;
+  margin: 0 0 var(--spaziatura-xxl) 0;
+  letter-spacing: -0.01562em;
+}
+
+.guide-steps {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--spaziatura-xl);
+  margin-top: var(--spaziatura-xl);
+  max-width: 75rem; /* 1200px */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--spaziatura-lg);
+  padding-bottom: var(--spaziatura-xxl);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.guide-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  padding: var(--spaziatura-xl);
+  background: var(--sfondo-bianco);
+  border-radius: 0;
+  box-shadow: var(--elevation-2);
+  transition: box-shadow var(--duration-medium-2) var(--easing-standard),
+              transform var(--duration-medium-2) var(--easing-standard);
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  max-width: 21.875rem; /* 350px */
+  min-height: 17.5rem; /* 280px */
+  box-sizing: border-box;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.guide-step:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+.guide-step:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.guide-step:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.guide-step:hover {
+  transform: scale(1.05) translateZ(0);
+  box-shadow: var(--elevation-8);
+  z-index: 10;
+}
+
+.guide-step-icon {
+  width: 3.75rem; /* 60px */
+  height: 60px;
+  border-radius: 50%;
+  background: transparent;
+  border: 3px solid var(--colore-primario);
+  color: var(--colore-primario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spaziatura-lg);
+  margin-top: 0;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.guide-step-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--colore-primario);
+}
+
+.guide-step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--colore-primario);
+  margin: 0 0 var(--spaziatura-md) 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  min-height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-step-description {
+  font-size: 0.9375rem;
+  color: var(--testo-grigio-scuro);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.8;
+  flex-grow: 1;
+}
+
+.guide-list-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spaziatura-md);
+  margin-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra il contenuto */
+}
+
+.guide-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spaziatura-xl);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.guide-list-item {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+
+.guide-card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.guide-card {
+  aspect-ratio: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  box-shadow: var(--elevation-2);
+  transition: box-shadow var(--duration-medium-2) var(--easing-standard),
+              transform var(--duration-medium-2) var(--easing-standard);
+  background: transparent;
+  display: block;
+  box-sizing: border-box;
+  isolation: isolate;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.guide-card:hover {
+  transform: translateY(-2px) translateZ(0);
+  box-shadow: var(--elevation-4);
+}
+
+
+.guide-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  padding: 0;
+  margin: 0;
+  transition: transform var(--durata-animazione-rapida) var(--easing-smooth);
+  transform: scale(1) translateZ(0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  will-change: transform;
+  backface-visibility: hidden;
+  /* Aspect ratio per prevenire layout shift (già gestito dal container con aspect-ratio: 1) */
+}
+
+
+/* Overlay con contenuto della card */
+.guide-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 50%;
+  background: linear-gradient(to top, rgba(21, 101, 214, 0.95) 0%, rgba(21, 101, 214, 0.85) 50%, rgba(21, 101, 214, 0) 100%);
+  padding: var(--spaziatura-lg) var(--spaziatura-md) var(--spaziatura-md);
+  color: var(--testo-bianco);
+  transition: opacity var(--duration-medium-2) var(--easing-standard);
+  z-index: 2;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+}
+
+
+.guide-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaziatura-xs);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.guide-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--testo-bianco);
+  margin: 0;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+
+.guide-card-duration {
+  display: flex !important;
+  align-items: center;
+  gap: var(--spaziatura-xs);
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  flex-shrink: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.guide-card-duration svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.guide-card-description {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-shrink: 1;
+  min-height: 1.1rem;
+}
+
+.guide-card-tags {
+  display: flex !important;
+  align-items: flex-start;
+  gap: var(--spaziatura-xs);
+  font-size: 0.75rem;
+  margin-top: var(--spaziatura-xs);
+  flex-shrink: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.guide-card-tags svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.guide-card-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spaziatura-xs);
+}
+
+.guide-card-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--testo-bianco);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  line-height: 1.2;
+}
+
+
+/* Linea di separazione blu */
+.guide-divider {
+  max-width: 75rem; /* 1200px */
+  margin: var(--spaziatura-xxl) auto;
+  padding: 0;
+  border: none;
+  height: 3px;
+  background: var(--colore-primario);
+  opacity: 1;
+  box-shadow: 0 2px 4px rgba(21, 101, 214, 0.2);
+  width: calc(100% - calc(var(--spaziatura-lg) * 2));
+  box-sizing: border-box;
+}
+
+/* Sezione "Hai bisogno di aiuto?" */
+.guide-help-section {
+  text-align: center;
+  padding: var(--spaziatura-lg) var(--spaziatura-md);
+  margin-top: 0;
+}
+
+.guide-help-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--colore-primario);
+  margin: 0 0 var(--spaziatura-lg) 0;
+}
+
+.guide-help-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spaziatura-sm);
+  padding: var(--spaziatura-md) var(--spaziatura-xl);
+  background: linear-gradient(135deg, var(--colore-primario) 0%, var(--colore-intermedio) 100%);
+  color: var(--testo-bianco);
+  text-decoration: none;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: box-shadow var(--duration-medium-2) var(--easing-standard),
+              transform var(--duration-medium-2) var(--easing-standard);
+  box-shadow: var(--elevation-2);
+}
+
+.guide-help-button svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.guide-help-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-8);
+  color: var(--testo-bianco);
+}
+
+/* Centra l'ultima card quando è da sola nella sua riga in desktop */
+@media (min-width: 1024px) {
+  /* Per desktop con 3 colonne (circa 1024px-1400px), posiziona l'ultima card nella colonna centrale */
+  .guide-list-item:last-child {
+    grid-column: 2;
+  }
+  
+  /* Assicura che la card mantenga le sue dimensioni normali */
+  .guide-list-item:last-child .guide-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Per schermi più larghi (4+ colonne), rimuovi grid-column e centra con justify-self */
+@media (min-width: 1400px) {
+  .guide-list-item:last-child {
+    grid-column: unset;
+    justify-self: center;
+  }
+  
+  /* Assicura che la card mantenga le sue dimensioni normali anche su schermi larghi */
+  .guide-list-item:last-child .guide-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ========================================
+   MEDIA QUERY - MOBILE
+   ======================================== */
+
+@media (max-width: 599px) {
+  /* How it works section - cards quadrate in verticale per mobile */
+  .guide-how-it-works-wrapper {
+    padding: var(--spaziatura-xl) var(--spaziatura-md);
+    margin-left: calc(-1 * var(--spaziatura-md));
+    margin-right: calc(-1 * var(--spaziatura-md));
+    width: calc(100% + 2 * var(--spaziatura-md));
+  }
+
+  .guide-how-it-works-title {
+    font-size: 1.5rem;
+  }
+
+  .guide-steps {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente */
+    gap: var(--spaziatura-lg);
+    padding: 0 var(--spaziatura-md);
+    max-width: 21.875rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .guide-step {
+    width: 100%;
+    max-width: 21.875rem;
+    aspect-ratio: 1;
+    min-height: auto;
+    height: auto;
+    padding: var(--spaziatura-lg);
+    margin: 0 auto; /* Centra orizzontalmente */
+  }
+
+  .guide-step-title {
+    font-size: 1.125rem;
+    min-height: 2.5em;
+  }
+
+  .guide-step-description {
+    font-size: 0.875rem;
+  }
+  
+  /* Centra meglio le card delle guide su mobile */
+  .guide-list-grid {
+    grid-template-columns: 1fr; /* Una colonna su mobile */
+    justify-items: center; /* Centra le card nella griglia */
+    gap: var(--spaziatura-lg);
+    width: 100%;
+    max-width: 21.875rem; /* Stessa larghezza dei quadrati */
+    margin: 0 auto; /* Centra la griglia */
+  }
+  
+  .guide-list-item {
+    max-width: 21.875rem; /* Stessa larghezza dei quadrati */
+    width: 100%;
+    margin: 0 auto; /* Centra l'item */
+    justify-self: center; /* Centra nella griglia */
+  }
+}
+
+/* ========================================
+   MEDIA QUERY - TABLET PORTRAIT (710x498)
+   ======================================== */
+
+@media (min-width: 600px) and (max-width: 768px) {
+  /* How it works section - cards quadrate in verticale */
+  .guide-how-it-works-wrapper {
+    padding: var(--spaziatura-xxl) var(--spaziatura-md);
+    margin-left: calc(-1 * var(--spaziatura-md));
+    margin-right: calc(-1 * var(--spaziatura-md));
+    width: calc(100% + 2 * var(--spaziatura-md));
+  }
+
+  .guide-steps {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spaziatura-lg);
+    padding: 0 var(--spaziatura-md);
+    max-width: 21.875rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .guide-step {
+    width: 100%;
+    max-width: 21.875rem;
+    aspect-ratio: 1;
+    min-height: auto;
+    height: auto;
+  }
+}
+
+/* ========================================
+   MEDIA QUERY - TABLET LANDSCAPE (75%)
+   ======================================== */
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  /* Wrapper principale */
+  .guide-list-wrapper {
+    padding: calc(var(--spaziatura-xxl) + 3.75rem) var(--spaziatura-lg) var(--spaziatura-xxl);
+  }
+
+  /* Intro section */
+  .guide-intro {
+    padding: var(--spaziatura-sm) var(--spaziatura-lg) var(--spaziatura-xl) var(--spaziatura-lg);
+  }
+
+  .guide-main-title {
+    font-size: 2rem;
+  }
+
+  .guide-intro p {
+    font-size: 1.0625rem;
+  }
+
+  /* How it works section */
+  .guide-how-it-works-wrapper {
+    padding: var(--spaziatura-xxl) var(--spaziatura-lg);
+    margin-left: calc(-1 * var(--spaziatura-lg));
+    margin-right: calc(-1 * var(--spaziatura-lg));
+    width: calc(100% + 2 * var(--spaziatura-lg));
+  }
+
+  .guide-how-it-works-title {
+    font-size: 1.75rem;
+  }
+
+  .guide-steps {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--spaziatura-lg);
+    padding: 0 var(--spaziatura-lg);
+  }
+
+  .guide-step {
+    flex: 1 1 calc(50% - var(--spaziatura-lg) / 2);
+    min-width: 280px;
+    max-width: 100%;
+    min-height: 16rem;
+  }
+
+  .guide-step-title {
+    font-size: 1.125rem;
+    min-height: 2.5em;
+  }
+
+  .guide-step-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Guide list container */
+  .guide-list-container {
+    padding: 0 var(--spaziatura-lg);
+  }
+
+  /* Guide grid - 2 colonne */
+  .guide-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spaziatura-lg);
+  }
+
+  /* Card styling ottimizzato */
+  .guide-card-title {
+    font-size: 1.0625rem;
+  }
+
+  .guide-card-duration {
+    font-size: 0.875rem;
+  }
+
+  .guide-card-description {
+    font-size: 0.8125rem;
+  }
+
+  /* Divider */
+  .guide-divider {
+    width: calc(100% - calc(var(--spaziatura-lg) * 2));
+    max-width: calc(100% - calc(var(--spaziatura-lg) * 2));
+  }
+
+  /* Help section */
+  .guide-help-title {
+    font-size: 1.375rem;
+  }
+
+  .guide-help-button {
+    padding: var(--spaziatura-md) var(--spaziatura-lg);
+    font-size: 0.9375rem;
+  }
+}
+

@@ -1,0 +1,30 @@
+/**
+ * ========================================
+ * HOME PAGE
+ * ========================================
+ * 
+ * Pagina home principale
+ * Scroll reveal classes centralizzate in index.css
+ * 
+ * ========================================
+ */
+
+.home-page {
+  width: 100%;
+  min-height: 100vh; /* Fallback per browser vecchi */
+  min-height: 100svh; /* Dynamic viewport height - iOS/Android */
+  background: var(--sfondo-principale);
+  position: relative;
+}
+
+.home-page > section:first-child {
+  position: relative;
+  z-index: 100;
+}
+
+.home-page > nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* Scroll reveal classes centralizzate in index.css */

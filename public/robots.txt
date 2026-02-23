@@ -1,0 +1,13 @@
+# robots.txt per SgamApp
+User-agent: *
+Allow: /
+
+# Pagine admin (non indicizzare)
+Disallow: /sgam-admin-login
+Disallow: /admin-dashboard
+
+# Endpoint API (non indicizzare)
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://sgamapp.vercel.app/sitemap.xml

@@ -1,0 +1,174 @@
+/**
+ * ========================================
+ * SCROLL TO TOP BUTTON - VERSIONE PULITA E OTTIMIZZATA
+ * ========================================
+ */
+
+.scroll-to-top-button {
+  position: fixed;
+  bottom: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) +
+      env(safe-area-inset-bottom, 0px)
+  );
+  left: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) + env(safe-area-inset-left, 0px)
+  );
+  width: 4.375rem; /* 70px */
+  height: 4.375rem; /* 70px */
+  border-radius: var(--border-radius-rotondo);
+  z-index: 1002; /* Z-index esplicito per garantire cliccabilità su desktop */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--sfondo-bianco);
+  color: var(--colore-primario);
+  border: 2px solid var(--colore-primario);
+  cursor: pointer;
+
+  box-shadow: 0 4px 12px rgba(var(--colore-primario-rgb), 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+
+  transition: transform var(--duration-medium-2) var(--easing-standard),
+    opacity var(--duration-medium-2) var(--easing-standard);
+
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+
+  overscroll-behavior: contain;
+
+  animation: fadeInUp 0.3s var(--easing-out) forwards;
+
+  /* Garantisce che il pulsante sia sempre cliccabile su desktop */
+  pointer-events: auto;
+}
+
+/* Icona */
+.scroll-to-top-icon {
+  width: 1.5rem; /* 24px */
+  height: 1.5rem; /* 24px */
+  color: var(--colore-primario);
+}
+
+/* Hover - solo ingrandimento leggero */
+.scroll-to-top-button:hover {
+  transform: scale(1.05) translateZ(0);
+}
+
+/* Active */
+.scroll-to-top-button:active {
+  transform: scale(0.95) translateZ(0);
+}
+
+/* Focus per accessibilità */
+.scroll-to-top-button:focus-visible {
+  outline: 3px solid var(--colore-primario);
+  outline-offset: 3px;
+}
+
+/* Animazione entrata */
+
+/* Portal iOS/Safari */
+#scroll-to-top-portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Necessario per iOS - pointer-events: none previene interferenze */
+  height: 100%; /* Necessario per iOS - pointer-events: none previene interferenze */
+  background: transparent;
+  z-index: 1002; /* Ridotto da 99999 per evitare problemi di stacking context */
+  pointer-events: none; /* IMPORTANTE: non blocca i click anche se copre tutto lo schermo */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Chrome mobile: fix portal - versione "fantasma" senza clipping */
+@media (max-width: 768px) {
+  #scroll-to-top-portal {
+    position: fixed !important;
+    
+    /* Rendi il contenitore 0x0 per non subire il resize della barra indirizzi */
+    width: 0 !important;
+    height: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    inset: auto !important; /* Resetta inset */
+    
+    /* FONDAMENTALE PER VEDERE L'ICONA: */
+    overflow: visible !important; /* Lascia uscire il bottone */
+    contain: none !important;     /* RIMUOVE IL BLOCCO che nascondeva l'icona */
+    isolation: auto !important;   /* Rimuove l'isolamento stacking */
+    
+    /* Assicurati che non interferisca */
+    background: transparent !important;
+    pointer-events: none !important;
+    transform: none !important;    /* Importante: evita di creare un nuovo contesto di coordinate */
+    z-index: 1002;
+  }
+
+  /* Il bottone rimane invariato, ma assicurati che abbia z-index alto */
+  .scroll-to-top-button {
+    position: fixed !important;
+    /* Usa env per la safe area */
+    bottom: calc(20px + env(safe-area-inset-bottom, 0)); 
+    left: calc(20px + env(safe-area-inset-left, 0));
+    z-index: 1002 !important;
+    pointer-events: auto !important;
+    transform: translateZ(0); /* Forza accelerazione hardware sul bottone, non sul portal */
+  }
+}
+
+/* Fix specifici iOS/Safari/Chrome/Firefox iOS */
+.is-ios #scroll-to-top-portal,
+.is-safari.is-mobile #scroll-to-top-portal,
+.is-ios.is-chrome #scroll-to-top-portal,
+.is-firefox-ios #scroll-to-top-portal {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Pulsante all'interno del portal iOS/Firefox iOS */
+.is-ios .scroll-to-top-button,
+.is-safari.is-mobile .scroll-to-top-button,
+.is-ios.is-chrome .scroll-to-top-button,
+.is-firefox-ios .scroll-to-top-button {
+  position: fixed !important;
+  bottom: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) +
+      env(safe-area-inset-bottom, 0px)
+  ) !important;
+  left: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) + env(safe-area-inset-left, 0px)
+  ) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1002 !important; /* Ridotto da 99999 per evitare problemi di stacking context */
+  pointer-events: auto !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  will-change: opacity !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top-button {
+    animation: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .scroll-to-top-button:hover {
+    transform: translateZ(0);
+  }
+
+  .scroll-to-top-button:active {
+    transform: scale(0.95) translateZ(0);
+  }
+}

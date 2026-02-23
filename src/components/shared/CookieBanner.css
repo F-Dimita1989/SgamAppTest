@@ -1,0 +1,620 @@
+/**
+ * ========================================
+ * COOKIE BANNER COMPONENT
+ * ========================================
+ * 
+ * Banner informativo sui cookie conforme GDPR
+ * Material Design con animazioni smooth
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * COOKIE BANNER
+ * ======================================== */
+
+.cookie-banner {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  /* Z-index molto alto per Chrome mobile */
+  z-index: 10000 !important;
+  background: var(--sfondo-bianco);
+  border-top: var(--border-normale) solid var(--colore-primario);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  padding: var(--spaziatura-md);
+  animation: slideUp var(--duration-medium-2) ease-out;
+  /* Chrome mobile: hardware acceleration e rendering corretto */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: transform;
+  /* Chrome mobile: assicura che il banner sia sempre visibile */
+  max-height: 100vh;
+  max-height: 100svh; /* Dynamic viewport height per Chrome mobile */
+  overflow-y: auto;
+  /* Chrome mobile: previene che altri elementi coprano il banner */
+  isolation: isolate;
+  /* Chrome mobile: forza il posizionamento rispetto al viewport, non al parent */
+  position: fixed !important;
+  /* Chrome mobile: assicura che non sia influenzato da trasformazioni CSS dei parent */
+  contain: layout style paint;
+}
+
+/* Chrome mobile: fix per assicurare che il banner rimanga fisso in fondo allo schermo */
+@media (max-width: 768px) {
+  .cookie-banner {
+    /* Chrome mobile: forza il posizionamento fisso rispetto al viewport */
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    /* Chrome mobile: z-index molto alto per essere sopra tutto */
+    z-index: 10000 !important;
+    /* Chrome mobile: usa viewport dinamico */
+    max-height: 100svh;
+    /* Chrome mobile: previene problemi di rendering con trasformazioni CSS */
+    -webkit-transform: translateZ(0) !important;
+    transform: translateZ(0) !important;
+    /* Chrome mobile: assicura che non sia influenzato da stacking context dei parent */
+    contain: layout style paint !important;
+    /* Chrome mobile: forza il rendering rispetto al viewport */
+    position: fixed !important;
+  }
+}
+
+
+/* Fix specifico per Chrome mobile */
+@supports (-webkit-appearance: none) {
+  @media (max-width: 768px) {
+    .cookie-banner {
+      /* Chrome mobile: forza rendering sopra altri elementi */
+      z-index: 10000 !important;
+      position: fixed !important;
+      /* Chrome mobile: previene problemi con viewport */
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      /* Chrome mobile: hardware acceleration */
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      /* Chrome mobile: assicura che non sia influenzato da trasformazioni CSS dei parent */
+      contain: layout style paint !important;
+      /* Chrome mobile: forza il rendering rispetto al viewport, non al parent */
+      position: fixed !important;
+    }
+  }
+
+  .cookie-banner {
+    /* Desktop: mantiene hardware acceleration */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* ========================================
+ * CONTAINER
+ * ======================================== */
+
+.cookie-banner__container {
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spaziatura-lg);
+  flex-wrap: wrap;
+}
+
+/* ========================================
+ * CONTENT
+ * ======================================== */
+
+.cookie-banner__content {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spaziatura-md);
+  flex: 1;
+  min-width: 17.5rem; /* 280px */
+}
+
+.cookie-banner__text {
+  flex: 1;
+}
+
+.cookie-banner__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--testo-grigio-scuro);
+  margin: 0 0 var(--spaziatura-sm) 0;
+  line-height: 1.4;
+}
+
+.cookie-banner__description {
+  font-size: 0.95rem;
+  color: var(--testo-grigio-scuro);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.cookie-banner__link {
+  color: var(--colore-primario);
+  text-decoration: underline;
+  transition: color var(--duration-short-4) ease;
+}
+
+.cookie-banner__link:hover,
+.cookie-banner__link:focus {
+  color: var(--colore-intermedio);
+  text-decoration: none;
+}
+
+.cookie-banner__link:focus {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-piccolo);
+}
+
+/* ========================================
+ * ACTIONS
+ * ======================================== */
+
+.cookie-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spaziatura-md);
+  flex-shrink: 0;
+}
+
+.cookie-banner__button {
+  padding: var(--spaziatura-md) var(--spaziatura-lg);
+  border: none;
+  border-radius: var(--border-radius-piccolo);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-short-4) ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.cookie-banner__button--accept {
+  background: var(--colore-primario);
+  color: var(--testo-bianco);
+  min-width: 80px; /* Assicura dimensione minima su mobile */
+}
+
+.cookie-banner__button--accept:hover {
+  background: var(--colore-intermedio);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(var(--colore-primario-rgb), 0.3);
+}
+
+.cookie-banner__button--accept:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(var(--colore-primario-rgb), 0.3);
+}
+
+.cookie-banner__button--accept:focus {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+.cookie-banner__button--close {
+  background: transparent;
+  color: var(--testo-grigio-scuro);
+  padding: var(--spaziatura-sm);
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-rotondo);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.cookie-banner__button--close:hover {
+  background: var(--sfondo-grigio-chiaro);
+  color: var(--testo-nero);
+}
+
+.cookie-banner__button--close:focus {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+.cookie-banner__button:focus-visible {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+/* ========================================
+ * PORTAL (Chrome mobile)
+ * ======================================== */
+#cookie-banner-portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 9999;
+  pointer-events: none;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+#cookie-banner-portal .cookie-banner {
+  pointer-events: auto;
+}
+
+/* Chrome mobile: fix portal - versione "fantasma" senza clipping */
+@media (max-width: 768px) {
+  #cookie-banner-portal {
+    position: fixed !important;
+
+    /* Rendi il contenitore 0x0 per non subire il resize della barra indirizzi */
+    width: 0 !important;
+    height: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    inset: auto !important; /* Resetta inset */
+
+    /* FONDAMENTALE PER VEDERE IL BANNER: */
+    overflow: visible !important; /* Lascia uscire il banner */
+    contain: none !important; /* RIMUOVE IL BLOCCO che nascondeva il banner */
+    isolation: auto !important; /* Rimuove l'isolamento stacking */
+
+    /* Assicurati che non interferisca */
+    background: transparent !important;
+    pointer-events: none !important;
+    transform: none !important; /* Importante: evita di creare un nuovo contesto di coordinate */
+    z-index: 9999;
+  }
+
+  /* Il banner rimane invariato, ma assicurati che abbia z-index alto */
+  #cookie-banner-portal .cookie-banner {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 10000 !important;
+    pointer-events: auto !important;
+    transform: translateZ(
+      0
+    ); /* Forza accelerazione hardware sul banner, non sul portal */
+  }
+}
+
+/* ========================================
+ * FIX iOS / Safari Mobile / Firefox iOS
+ * ======================================== */
+.is-ios #cookie-banner-portal,
+.is-safari.is-mobile #cookie-banner-portal,
+.is-ios.is-chrome #cookie-banner-portal,
+.is-firefox-ios #cookie-banner-portal {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+.is-ios #cookie-banner-portal .cookie-banner,
+.is-safari.is-mobile #cookie-banner-portal .cookie-banner,
+.is-ios.is-chrome #cookie-banner-portal .cookie-banner,
+.is-firefox-ios #cookie-banner-portal .cookie-banner {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  will-change: opacity !important;
+}
+
+/* Firefox ANDROID mobile (Gecko): applica gli stessi fix di Chrome mobile */
+/* Firefox iOS usa WebKit → NON applica questi fix, usa Safari normale */
+@supports (-moz-appearance: none) {
+  @media (max-width: 768px) {
+    /* SOLO Firefox Android (Gecko), NON Firefox iOS (WebKit) */
+    .is-firefox.is-android #cookie-banner-portal {
+      position: fixed !important;
+      width: 0 !important;
+      height: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      inset: auto !important;
+      overflow: visible !important;
+      contain: none !important;
+      isolation: auto !important;
+      background: transparent !important;
+      pointer-events: none !important;
+      transform: none !important;
+      z-index: 9999 !important;
+
+      /* Firefox Android: proprietà aggiuntive per garantire visibilità */
+      -moz-transform: none !important;
+      -moz-contain: none !important;
+    }
+
+    .is-firefox.is-android #cookie-banner-portal .cookie-banner {
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 10000 !important;
+      pointer-events: auto !important;
+
+      /* Firefox Android: usa translateZ anche su Firefox per consistenza */
+      transform: translateZ(0) !important;
+      -moz-transform: translateZ(0) !important;
+
+      /* Firefox Android: forza visibilità */
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+
+      /* Firefox Android: CRITICO - rimuove contain che nasconde il banner */
+      contain: none !important;
+      -moz-contain: none !important;
+
+      /* Firefox Android: forza stacking context corretto */
+      isolation: isolate !important;
+      -moz-isolation: isolate !important;
+    }
+  }
+}
+
+/* Firefox ANDROID mobile (Gecko): sovrascrive le ottimizzazioni globali per il cookie banner */
+/* Firefox iOS usa WebKit → NON applica questi fix */
+.is-firefox.is-android.is-mobile #cookie-banner-portal {
+  position: fixed !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: visible !important;
+  contain: none !important;
+  -moz-contain: none !important;
+  isolation: auto !important;
+  -moz-isolation: auto !important;
+  transform: none !important;
+  -moz-transform: none !important;
+  will-change: auto !important;
+}
+
+.is-firefox.is-android.is-mobile #cookie-banner-portal .cookie-banner {
+  /* CRITICO: usa position fixed rispetto al VIEWPORT, non al parent */
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Firefox Android: RIMUOVE TUTTE le proprietà che rompono position fixed su Gecko */
+  contain: none !important;
+  -moz-contain: none !important;
+  transform: none !important;
+  -moz-transform: none !important;
+  will-change: auto !important;
+  perspective: none !important;
+  -moz-perspective: none !important;
+  filter: none !important;
+
+  /* Firefox Android: forza il banner ad essere relativo al viewport */
+  margin: 0 !important;
+  inset: auto auto 0 0 !important;
+}
+
+/* Firefox ANDROID mobile: RIMUOVE transform dai parent che rompono position fixed su Gecko */
+.is-firefox.is-android.is-mobile body,
+.is-firefox.is-android.is-mobile html,
+.is-firefox.is-android.is-mobile #root {
+  transform: none !important;
+  -moz-transform: none !important;
+  contain: none !important;
+  -moz-contain: none !important;
+  perspective: none !important;
+  -moz-perspective: none !important;
+  filter: none !important;
+}
+
+/* Firefox ANDROID mobile: RIMUOVE transform dai parent del banner */
+.is-firefox.is-android.is-mobile #cookie-banner-portal,
+.is-firefox.is-android.is-mobile #cookie-banner-portal * {
+  /* Forza rimozione transform dai parent del banner */
+  transform: none !important;
+  -moz-transform: none !important;
+  perspective: none !important;
+  -moz-perspective: none !important;
+  contain: none !important;
+  -moz-contain: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+ * FIX FIREFOX iOS (WebKit)
+ * ======================================== */
+/* Firefox iOS usa WebKit (come Safari), non Gecko */
+/* CRITICO: rimuovi transform dai parent che rompono position fixed */
+.is-firefox-ios.is-mobile body,
+.is-firefox-ios.is-mobile html,
+.is-firefox-ios.is-mobile #root {
+  transform: none !important;
+  -webkit-transform: none !important;
+  contain: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  filter: none !important;
+}
+
+/* Applica gli stessi fix di Safari iOS per il portal */
+.is-firefox-ios.is-mobile #cookie-banner-portal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.is-firefox-ios.is-mobile #cookie-banner-portal .cookie-banner {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  /* WebKit: usa translateZ per accelerazione hardware */
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+}
+
+/* ========================================
+ * FIX OPERA MOBILE
+ * ======================================== */
+/* Opera mobile: applica gli stessi fix di Firefox/Chrome mobile */
+@supports (-webkit-appearance: none) {
+  @media (max-width: 768px) {
+    .is-opera #cookie-banner-portal {
+      position: fixed !important;
+      width: 0 !important;
+      height: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      inset: auto !important;
+      overflow: visible !important;
+      contain: none !important;
+      isolation: auto !important;
+      background: transparent !important;
+      pointer-events: none !important;
+      transform: none !important;
+      z-index: 9999 !important;
+
+      /* Opera mobile: proprietà aggiuntive per garantire visibilità */
+      -webkit-transform: none !important;
+    }
+
+    .is-opera #cookie-banner-portal .cookie-banner {
+      position: fixed !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 10000 !important;
+      pointer-events: auto !important;
+
+      /* Opera mobile: usa translateZ anche su Opera per consistenza */
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+
+      /* Opera mobile: forza visibilità */
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+
+      /* Opera mobile: CRITICO - rimuove contain che nasconde il banner */
+      contain: none !important;
+
+      /* Opera mobile: forza stacking context corretto */
+      isolation: isolate !important;
+    }
+  }
+}
+
+/* Opera mobile: sovrascrive le ottimizzazioni globali per il cookie banner */
+.is-opera.is-mobile #cookie-banner-portal {
+  position: fixed !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: visible !important;
+  contain: none !important;
+  isolation: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  will-change: auto !important;
+  z-index: 9999 !important;
+}
+
+.is-opera.is-mobile #cookie-banner-portal .cookie-banner {
+  /* CRITICO: usa position fixed rispetto al VIEWPORT, non al parent */
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 10000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Opera mobile: RIMUOVE TUTTE le proprietà che rompono position fixed */
+  contain: none !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  will-change: auto !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  filter: none !important;
+
+  /* Opera mobile: forza il banner ad essere relativo al viewport */
+  margin: 0 !important;
+  inset: auto auto 0 0 !important;
+  pointer-events: auto !important;
+}
+
+/* Opera mobile: RIMUOVE transform dai parent che rompono position fixed */
+.is-opera.is-mobile body,
+.is-opera.is-mobile html,
+.is-opera.is-mobile #root {
+  transform: none !important;
+  -webkit-transform: none !important;
+  contain: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  filter: none !important;
+}
+
+.is-opera.is-mobile #cookie-banner-portal,
+.is-opera.is-mobile #cookie-banner-portal * {
+  /* Forza rimozione transform dai parent del banner */
+  transform: none !important;
+  -webkit-transform: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  contain: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+ * HIGH CONTRAST MODE SUPPORT
+ * ======================================== */
+
+/* High contrast mode support gestito tramite variabili CSS globali */

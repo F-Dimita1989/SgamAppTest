@@ -1,0 +1,597 @@
+/**
+ * ========================================
+ * HERO SECTION COMPONENT
+ * ========================================
+ * 
+ * Hero section fullscreen con background image
+ * Material Design con searchbar integrata
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * HERO SECTION
+ * ======================================== */
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Fallback per browser vecchi */
+  min-height: 100svh; /* Dynamic viewport height - iOS/Android */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+  margin-top: calc(var(--navbar-height, 5rem) * -1); /* 80px */
+  padding-top: var(--navbar-height, 5rem); /* 80px */
+  z-index: 100;
+  /* Ottimizzazione LCP: background color di fallback per evitare layout shift */
+  background-color: var(--colore-primario);
+}
+
+/* Transizione smooth quando l'immagine è caricata */
+.hero-section.hero-image-loaded {
+  transition: opacity var(--duration-medium-2) ease-in;
+}
+
+/* ========================================
+ * HERO OVERLAY
+ * ======================================== */
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--colore-primario-rgb), 0.25) 0%,
+    rgba(var(--colore-primario-rgb), 0.15) 50%,
+    rgba(var(--colore-primario-rgb), 0.25) 100%
+  );
+  z-index: 1;
+}
+
+/* ========================================
+ * HERO CONTENT
+ * ======================================== */
+
+.hero-content {
+  position: relative;
+  z-index: 101;
+  text-align: center;
+  max-width: 50rem; /* 800px */
+  padding: var(--spaziatura-xl);
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 var(--spaziatura-lg) 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--testo-bianco);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h1 strong {
+  font-weight: 900;
+}
+
+.hero-content p {
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin: 0 0 var(--spaziatura-xl) 0;
+  color: var(--testo-bianco);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+ * HERO SEARCHBAR - Material Design
+ * ======================================== */
+
+.hero-searchbar-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: var(--spaziatura-xl) auto 0;
+  z-index: 102;
+}
+
+.hero-searchbar {
+  width: 100%;
+}
+
+.hero-searchbar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 28px;
+  padding: 0 var(--spaziatura-md);
+  box-shadow: var(--elevation-2);
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  overflow: hidden;
+  /* Rimuove outline nativo sui browser mobile */
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hero-searchbar-container:focus-within {
+  box-shadow: var(--elevation-8);
+  transform: translateY(-2px);
+}
+
+.hero-searchbar-container:active {
+  transform: scale(0.98);
+}
+
+.hero-searchbar-icon {
+  color: var(--colore-primario);
+  font-size: 1.5rem;
+  margin-right: var(--spaziatura-sm);
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.hero-searchbar-input {
+  flex: 1;
+  border: none;
+  outline: none !important;
+  outline-offset: 0 !important;
+  background: transparent;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--testo-grigio-scuro);
+  padding: var(--spaziatura-md) 0;
+  z-index: 1;
+  position: relative;
+  /* Rimuove outline nativo sui browser mobile */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+  -moz-outline: none !important;
+}
+
+.hero-searchbar-input::placeholder {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  opacity: 1;
+}
+
+.hero-searchbar-input:focus {
+  color: var(--testo-nero);
+  outline: none !important;
+  outline-offset: 0 !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+  -moz-outline: none !important;
+}
+
+.hero-searchbar-input:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+  -moz-outline: none !important;
+}
+
+.hero-searchbar-input:active {
+  outline: none !important;
+  outline-offset: 0 !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ========================================
+ * HERO SEARCH RESULTS
+ * ======================================== */
+
+.hero-search-results {
+  position: absolute;
+  top: calc(100% + var(--spaziatura-xs));
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(10px); /* Safari */
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-grande);
+  box-shadow: var(--elevation-16);
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10000 !important;
+  border: var(--border-sottile) solid rgba(255, 255, 255, 0.3);
+  margin-top: var(--spaziatura-xs);
+  animation: slideDown var(--duration-short-4) var(--easing-standard);
+}
+
+/* Animazione slideDown centralizzata in DesignSystem.css */
+/* Mantenuto per riferimento locale */
+
+.hero-search-result-item {
+  padding: var(--spaziatura-sm) var(--spaziatura-md);
+  cursor: pointer;
+  transition: all var(--duration-short-4) var(--easing-standard);
+  border-bottom: var(--border-sottile) solid rgba(0, 0, 0, 0.08);
+}
+
+.hero-search-result-item:last-child {
+  border-bottom: none;
+}
+
+.hero-search-result-item:hover,
+.hero-search-result-item.selected {
+  background-color: rgba(var(--colore-primario-rgb), 0.1);
+  transform: translateX(4px);
+}
+
+.hero-search-result-title {
+  font-weight: 600;
+  color: var(--colore-primario);
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero-search-result-category {
+  font-size: 0.8rem;
+  color: var(--testo-grigio-scuro);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.hero-search-loading {
+  padding: var(--spaziatura-md);
+  text-align: center;
+  color: var(--testo-grigio-scuro);
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE - Ottimizzazioni per iOS e Android
+ * ======================================== */
+
+@media (max-width: 768px) {
+  /* Rimuove margin dal wrapper section su mobile e disabilita transform scroll-reveal */
+  .home-page > section:first-child {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    transform: translateY(0) !important;
+    -webkit-transform: translateY(0) !important;
+  }
+
+  /* Rimuove margin/padding dal main su mobile */
+  .home-page {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* Fix background-attachment per iOS Safari - STESSO COMPORTAMENTO DESKTOP */
+  .hero-section {
+    background-attachment: scroll !important; /* Fix iOS Safari */
+    min-height: 60vh; /* Ridotto da 100vh per essere meno ingombrante */
+    min-height: 60svh; /* Dynamic viewport height per mobile */
+    /* Ottimizzazione performance mobile */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    /* STESSO COMPORTAMENTO DESKTOP */
+    display: flex;
+    align-items: center; /* Come desktop */
+    justify-content: center;
+    /* Background come desktop */
+    background-position: center top !important; /* Come desktop */
+    background-size: cover !important;
+    /* STESSO MARGIN E PADDING COME DESKTOP */
+    margin-top: calc(
+      var(--navbar-height, 5rem) * -1
+    ) !important; /* Come desktop */
+    padding-top: var(--navbar-height, 5rem) !important; /* Come desktop */
+    padding: var(--navbar-height, 5rem) var(--spaziatura-sm)
+      calc(var(--spaziatura-sm) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  /* Firefox mobile - fix per evitare che navbar copra il contenuto della hero section */
+  @-moz-document url-prefix() {
+    /* Calcola l'altezza reale della navbar mobile */
+    .hero-section {
+      --navbar-mobile-height: calc(
+        3.5rem + var(--spaziatura-sm) + env(safe-area-inset-top, 0px)
+      );
+      /* Aumenta l'altezza del background su Firefox mobile */
+      min-height: 75vh !important;
+      min-height: 75svh !important;
+      /* Usa l'altezza reale della navbar mobile per margin e padding */
+      margin-top: calc(var(--navbar-mobile-height) * -1) !important;
+      padding-top: var(--navbar-mobile-height) !important;
+      /* Rimuove il padding generale e usa solo padding-top */
+      padding: var(--navbar-mobile-height) var(--spaziatura-sm)
+        calc(var(--spaziatura-sm) + env(safe-area-inset-bottom, 0px)) !important;
+    }
+
+    .main-content:has(.hero-section),
+    .main-content:has(.home-page) {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* Rimuove qualsiasi spazio aggiuntivo su Firefox mobile */
+    body > *:first-child,
+    #root > *:first-child,
+    .main-content > *:first-child,
+    .home-page > *:first-child {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    /* Sposta titolo, descrizione e searchbar più in basso su Firefox mobile */
+    .hero-content {
+      padding-top: calc(var(--spaziatura-xl) + var(--spaziatura-md)) !important;
+      margin-top: var(--spaziatura-md) !important;
+    }
+  }
+
+  /* Riduzione dimensioni testo per mobile - TUTTO CENTRATO */
+  .hero-content {
+    padding: var(--spaziatura-md) var(--spaziatura-md); /* Ridotto padding verticale */
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important; /* Centrato */
+    justify-content: center !important; /* Centrato verticalmente */
+    text-align: center !important;
+    margin: 0 auto; /* Centrato */
+  }
+
+  .hero-content h1 {
+    font-size: 2rem; /* Ridotto da 3.5rem */
+    line-height: 1.3;
+    margin: 0 auto var(--spaziatura-sm) auto; /* Centrato con margin auto */
+    width: 100%;
+    text-align: center !important;
+    /* Miglioramento leggibilità su schermi piccoli */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content p {
+    font-size: 1rem; /* Ridotto da 1.375rem */
+    line-height: 1.5;
+    margin: 0 auto var(--spaziatura-md) auto; /* Centrato con margin auto */
+    padding: 0 var(--spaziatura-xs);
+    width: 100%;
+    text-align: center !important;
+    /* Miglioramento leggibilità */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Ottimizzazione searchbar per mobile - CENTRATA */
+  .hero-searchbar-wrapper {
+    margin: var(--spaziatura-md) auto 0; /* Centrato con margin auto */
+    padding: 0 var(--spaziatura-sm);
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    /* z-index alto per permettere ai suggerimenti di stare sopra la bottom nav */
+    z-index: 10000 !important;
+  }
+
+  .hero-searchbar-container {
+    border-radius: 24px; /* Leggermente più piccolo per mobile */
+    padding: 0 var(--spaziatura-sm);
+    /* Touch target minimo 44px */
+    min-height: 44px;
+  }
+
+  .hero-searchbar-icon {
+    font-size: 1.25rem; /* Ridotto da 1.5rem */
+    margin-right: var(--spaziatura-xs);
+  }
+
+  .hero-searchbar-input {
+    font-size: 1rem; /* Ridotto da 1.125rem */
+    padding: var(--spaziatura-sm) 0;
+    /* Touch-friendly */
+    min-height: 44px;
+    /* Rimuove outline nativo sui browser mobile */
+    outline: none !important;
+    outline-offset: 0 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+    -moz-outline: none !important;
+  }
+
+  .hero-searchbar-input:focus,
+  .hero-searchbar-input:focus-visible,
+  .hero-searchbar-input:active {
+    outline: none !important;
+    outline-offset: 0 !important;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+    -moz-outline: none !important;
+  }
+
+  /* Nascondi suggerimenti su mobile */
+  .hero-search-results {
+    display: none !important;
+  }
+
+  .hero-search-result-item {
+    padding: var(--spaziatura-md); /* Aumentato per touch target */
+    /* Touch target minimo 44px */
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hero-search-result-title {
+    font-size: 0.9rem; /* Leggermente ridotto */
+  }
+
+  .hero-search-result-category {
+    font-size: 0.75rem; /* Leggermente ridotto */
+  }
+
+  .hero-search-loading {
+    padding: var(--spaziatura-lg);
+    font-size: 0.875rem;
+  }
+}
+
+/* ========================================
+ * MOBILE SMALL - Ottimizzazioni per schermi molto piccoli
+ * ======================================== */
+
+@media (max-width: 480px) {
+  /* STESSO COMPORTAMENTO DESKTOP anche per schermi piccoli */
+  .hero-section {
+    min-height: 55vh; /* Ancora più ridotto per schermi piccoli */
+    min-height: 55svh;
+    /* STESSO MARGIN E PADDING COME DESKTOP */
+    margin-top: calc(
+      var(--navbar-height, 5rem) * -1
+    ) !important; /* Come desktop */
+    padding-top: var(--navbar-height, 5rem) !important; /* Come desktop */
+    /* Background come desktop */
+    background-position: center top !important; /* Come desktop */
+    background-size: cover !important;
+    align-items: center !important; /* Come desktop */
+  }
+
+  .hero-content {
+    padding: var(--spaziatura-sm) var(--spaziatura-sm); /* Ridotto ulteriormente */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important; /* Centrato */
+    justify-content: center !important; /* Centrato verticalmente */
+    text-align: center !important;
+    margin: 0 auto; /* Centrato */
+  }
+
+  .hero-content h1 {
+    font-size: 1.75rem; /* Ancora più piccolo */
+    margin: 0 auto var(--spaziatura-xs) auto; /* Centrato con margin auto */
+    width: 100%;
+    text-align: center !important;
+  }
+
+  .hero-content p {
+    font-size: 0.9375rem; /* 15px */
+    margin: 0 auto var(--spaziatura-sm) auto; /* Centrato con margin auto */
+    width: 100%;
+    text-align: center !important;
+  }
+
+  .hero-searchbar-wrapper {
+    margin: var(--spaziatura-sm) auto 0; /* Centrato con margin auto */
+    padding: 0 var(--spaziatura-xs);
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    /* z-index alto per permettere ai suggerimenti di stare sopra la bottom nav */
+    z-index: 10000 !important;
+  }
+
+  .hero-searchbar-container {
+    border-radius: 20px;
+  }
+
+  .hero-search-results {
+    /* Nascondi suggerimenti anche su schermi piccoli */
+    display: none !important;
+  }
+}
+
+/* ========================================
+ * LANDSCAPE MOBILE - Ottimizzazioni per orientamento orizzontale
+ * ======================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  /* STESSO COMPORTAMENTO DESKTOP anche per landscape */
+  .hero-section {
+    min-height: 70vh; /* Ridotto per landscape */
+    min-height: 70svh;
+    display: flex;
+    align-items: center !important; /* Come desktop */
+    justify-content: center;
+    /* STESSO MARGIN E PADDING COME DESKTOP */
+    margin-top: calc(
+      var(--navbar-height, 5rem) * -1
+    ) !important; /* Come desktop */
+    padding-top: var(--navbar-height, 5rem) !important; /* Come desktop */
+    padding: var(--navbar-height, 5rem) var(--spaziatura-xs)
+      calc(var(--spaziatura-xs) + env(safe-area-inset-bottom, 0px)) !important;
+    /* Background come desktop */
+    background-position: center top !important; /* Come desktop */
+    background-size: cover !important;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important; /* Centrato */
+    justify-content: center !important; /* Centrato verticalmente */
+    text-align: center !important;
+    width: 100%;
+    padding: var(--spaziatura-sm);
+    margin: 0 auto; /* Centrato */
+  }
+
+  .hero-content h1 {
+    font-size: 1.875rem; /* Ridotto per landscape */
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto var(--spaziatura-xs) auto; /* Centrato con margin auto */
+  }
+
+  .hero-content p {
+    font-size: 0.9375rem;
+    width: 100%;
+    text-align: center !important;
+    margin: 0 auto var(--spaziatura-sm) auto; /* Centrato con margin auto */
+  }
+
+  .hero-searchbar-wrapper {
+    margin: var(--spaziatura-sm) auto 0; /* Ridotto margin */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* z-index alto per permettere ai suggerimenti di stare sopra la bottom nav */
+    z-index: 10000 !important;
+  }
+
+  /* Nascondi suggerimenti anche su landscape mobile */
+  .hero-search-results {
+    display: none !important;
+  }
+}

@@ -1,0 +1,430 @@
+/**
+ * ========================================
+ * BOTTOM NAVIGATION COMPONENT
+ * ========================================
+ * 
+ * Navigazione orizzontale con scroll swipe
+ * Material Design con animazioni smooth
+ * Ottimizzato per touch devices
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * CONTAINER
+ * ======================================== */
+
+.bottom-nav-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: -0.5rem; /* -8px */
+  /* Assicura che tutto il contenuto sia visibile su mobile */
+  overflow: visible;
+}
+
+/* ========================================
+ * BOTTOM NAV
+ * ======================================== */
+
+.bottom-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.75rem; /* 60px - spazio uniforme tra le icone */
+  padding: 1.5625rem 5rem; /* 25px 80px */
+  /* Safe areas iOS - rispetta home indicator */
+  padding-bottom: calc(1.5625rem + env(safe-area-inset-bottom, 0px)); /* 25px */
+  background: var(--colore-primario);
+  box-shadow: var(--elevation-2);
+  position: relative;
+  flex: 1;
+  /* SWIPE NATIVO - Come scroll pagine */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  animation: fadeSlideIn 1.2s var(--easing-decelerate) both;
+  z-index: 1 !important;
+  /* Permette swipe orizzontale - come scroll pagine */
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  overscroll-behavior-x: contain;
+  /* IMPORTANTE: pan-x permette swipe orizzontale, pan-y permette scroll verticale se necessario */
+  touch-action: pan-x pan-y;
+  /* Performance */
+  transform: translateZ(0);
+  /* Assicura che lo scroll funzioni anche in produzione */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Nasconde scrollbar su mobile */
+  -ms-overflow-style: none;
+}
+
+/* Animazione comparsa iniziale */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ========================================
+ * NAV ITEMS
+ * ======================================== */
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: var(--testo-bianco);
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  transition: all var(--duration-medium-2) cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  width: 6.25rem; /* 100px */
+  min-width: 6.25rem; /* 100px */
+  max-width: 6.25rem; /* 100px */
+  padding: var(--spaziatura-sm) 0;
+  transform-origin: center;
+  flex-shrink: 0;
+  /* FONDAMENTALE: Permette swipe orizzontale anche sui link */
+  touch-action: pan-x pan-y;
+  /* Ottimizzazioni per touch */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  /* Performance */
+  transform: translateZ(0);
+}
+
+.nav-icon {
+  width: 4.6875rem !important; /* 75px */
+  height: 4.6875rem !important; /* 75px */
+  margin: 0 auto 0.625rem auto !important; /* 10px */
+  transition: all var(--duration-medium-2) cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  border-radius: var(--border-radius-medio) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+  align-self: center !important;
+  box-shadow: var(--elevation-2) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform-origin: center !important;
+  max-width: 4.6875rem !important; /* 75px */
+  max-height: 4.6875rem !important; /* 75px */
+  /* Permette swipe anche sulle immagini */
+  touch-action: pan-x;
+  pointer-events: none; /* Le immagini non catturano eventi, solo il link */
+}
+
+.nav-label {
+  text-align: center;
+  white-space: normal;
+  width: 100%;
+  line-height: 1.3;
+  overflow-wrap: break-word;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-medium-2) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Material Design hover effect */
+.nav-item:hover {
+  transform: translateY(-3px) scale(1.08);
+}
+
+.nav-item:hover .nav-icon {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: var(--elevation-8);
+}
+
+.nav-item:hover .nav-label {
+  text-shadow: var(--ombra-leggera);
+}
+
+.nav-item:active {
+  transform: translateY(-2px);
+}
+
+.nav-item:active .nav-icon {
+  transform: translateY(-2px);
+  box-shadow: var(--elevation-2);
+}
+
+/* Animazione di ingrandimento al click su mobile */
+@media (max-width: 768px) {
+  .nav-item:active {
+    transform: scale(1.1) translateY(-2px) !important; /* Ridotto da 1.15 a 1.1 */
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    z-index: 10; /* Porta l'elemento in primo piano durante l'animazione */
+    position: relative; /* Necessario per z-index */
+  }
+
+  .nav-item:active .nav-icon {
+    transform: scale(1.1) translateY(-2px) !important; /* Ridotto da 1.15 a 1.1 */
+    box-shadow: var(--elevation-8) !important;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    transform-origin: center center; /* Assicura che l'ingrandimento sia centrato */
+  }
+
+  .nav-item:active .nav-label {
+    transform: scale(1.05) !important;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  }
+}
+
+/* ========================================
+ * SCROLLBAR STYLING
+ * ======================================== */
+
+/* Nasconde scrollbar su mobile, mostra sottile su desktop */
+/* Firefox */
+.bottom-nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--testo-bianco-rgb), 0.3)
+    rgba(var(--testo-bianco-rgb), 0.1);
+}
+
+/* Chrome, Safari, Edge - Desktop */
+@media (min-width: 769px) {
+  .bottom-nav::-webkit-scrollbar {
+    height: 0.25rem; /* 4px */
+  }
+
+  .bottom-nav::-webkit-scrollbar-track {
+    background: rgba(var(--testo-bianco-rgb), 0.1);
+    border-radius: 10px;
+  }
+
+  .bottom-nav::-webkit-scrollbar-thumb {
+    background: rgba(var(--testo-bianco-rgb), 0.3);
+    border-radius: 10px;
+  }
+
+  .bottom-nav::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--testo-bianco-rgb), 0.5);
+  }
+}
+
+/* ========================================
+ * SCROLL ARROWS
+ * ======================================== */
+
+.bottom-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--sfondo-bianco);
+  border: none;
+  width: 3.5rem; /* 56px */
+  height: 3.5rem; /* 56px */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  color: var(--colore-primario);
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1;
+  border-radius: var(--border-radius-rotondo);
+  box-shadow: none;
+}
+
+.bottom-nav-arrow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--colore-primario);
+  border-radius: var(--border-radius-rotondo);
+  opacity: 0;
+  transition: opacity var(--duration-medium-2) var(--easing-standard);
+  z-index: -1;
+}
+
+.bottom-nav-arrow:hover {
+  color: var(--testo-bianco) !important;
+  transform: translateY(-50%) translateY(-2px);
+  box-shadow: none;
+}
+
+.bottom-nav-arrow:hover::before {
+  opacity: 1;
+}
+
+.bottom-nav-arrow:active {
+  transform: translateY(-50%) translateY(0);
+  opacity: 0.7;
+}
+
+.bottom-nav-arrow-left {
+  left: var(--spaziatura-xs);
+}
+
+@media (min-width: 769px) {
+  .bottom-nav-arrow-left {
+    /* Sposta leggermente più a sinistra su desktop per non coprire l'icona */
+    left: 0.5rem;
+  }
+}
+
+.bottom-nav-arrow-right {
+  right: var(--spaziatura-xs);
+}
+
+/* ========================================
+ * DESKTOP - Assicura visibilità prima icona
+ * ======================================== */
+
+@media (min-width: 769px) {
+  .bottom-nav {
+    /* Assicura che la prima icona sia visibile */
+    /* Mantiene padding originale, ma inizia da sinistra */
+    justify-content: flex-start;
+    /* Calcolo spazio: freccia sinistra (0.5rem + 3.5rem) + stesso spazio della destra (5rem - 0.25rem - 3.5rem = 1.25rem) */
+    /* Totale: 4rem + 1.25rem = 5.25rem */
+    padding-left: 5.25rem;
+  }
+
+  /* Rimuove il margine negativo - ora lo spazio è calcolato correttamente */
+  .bottom-nav > .nav-item:first-child {
+    margin-left: 0;
+  }
+}
+
+/* ========================================
+ * MOBILE RESPONSIVE - Solo touch, senza frecce
+ * ======================================== */
+
+@media (max-width: 768px) {
+  /* Nasconde le frecce su mobile - solo touch swipe */
+  .bottom-nav-arrow {
+    display: none !important;
+  }
+
+  /* ========================================
+   * BOTTOM NAV - OTTIMIZZAZIONE FLUIDITÀ
+   * ======================================== */
+  .bottom-nav {
+    /* Layout */
+    display: flex;
+    justify-content: flex-start; /* Inizia da sinistra su mobile */
+    gap: 1.5rem; /* Ridotto per mostrare più elementi */
+    padding: 1.5rem 1rem; /* Padding verticale aumentato per animazione */
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    width: 100%;
+    min-width: 100%;
+    /* Assicura che tutti gli elementi siano scrollabili */
+    box-sizing: border-box;
+
+    /* SWIPE NATIVO - Come scroll pagine - MIGLIORATO PER PRODUZIONE */
+    overflow-x: auto;
+    overflow-y: visible; /* Permette che gli elementi ingranditi non vengano tagliati */
+    -webkit-overflow-scrolling: touch;
+
+    /* Permette swipe orizzontale - come scroll pagine */
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+    overscroll-behavior-x: contain;
+    /* IMPORTANTE: pan-x permette swipe orizzontale, pan-y permette scroll verticale */
+    touch-action: pan-x pan-y !important;
+    /* Assicura che lo scroll funzioni anche in produzione */
+    -webkit-overflow-scrolling: touch !important;
+
+    /* Performance */
+    transform: translateZ(0);
+
+    /* Nascondi scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .bottom-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Impedisci che le icone si schiaccino */
+  .bottom-nav .nav-item {
+    flex: 0 0 auto;
+    flex-shrink: 0;
+    width: 5rem; /* Ridotto per mostrare più elementi */
+    min-width: 5rem;
+    max-width: 5rem;
+    /* FONDAMENTALE: Sovrascrive touch-action: manipulation da index.css */
+    /* Permette swipe anche sui link su mobile - FORZATO PER PRODUZIONE */
+    touch-action: pan-x pan-y !important;
+    /* Assicura che gli eventi touch funzionino correttamente */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Performance - evita repaint durante scroll */
+    transform: translateZ(0);
+    /* Rimuovi highlight tap per pulizia visiva */
+    -webkit-tap-highlight-color: transparent;
+    /* Permette che l'icona ingrandita non venga tagliata */
+    overflow: visible;
+    position: relative; /* Necessario per z-index durante :active */
+    /* Permette che gli eventi touch vengano gestiti correttamente */
+    pointer-events: auto;
+  }
+
+  /* Icone leggermente più piccole su mobile */
+  .nav-icon {
+    width: 4rem !important; /* 64px */
+    height: 4rem !important; /* 64px */
+    max-width: 4rem !important;
+    max-height: 4rem !important;
+    transform-origin: center center !important; /* Ingrandimento centrato */
+  }
+
+  /* Label più piccola su mobile */
+  .nav-label {
+    font-size: 0.875rem; /* 14px */
+    min-height: 2.4em;
+  }
+}
+
+/* ========================================
+ * MOBILE SMALL - Ottimizzazioni per schermi piccoli
+ * ======================================== */
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    padding: 1rem var(--spaziatura-sm);
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    gap: 2rem; /* Gap ancora più ridotto */
+  }
+
+  .nav-item {
+    width: 5rem; /* 80px */
+    min-width: 5rem;
+    max-width: 5rem;
+  }
+
+  .nav-icon {
+    width: 3.5rem !important; /* 56px */
+    height: 3.5rem !important; /* 56px */
+    max-width: 3.5rem !important;
+    max-height: 3.5rem !important;
+  }
+
+  .nav-label {
+    font-size: 0.8125rem; /* 13px */
+    min-height: 2.2em;
+  }
+}

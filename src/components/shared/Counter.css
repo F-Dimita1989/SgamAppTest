@@ -1,0 +1,47 @@
+/**
+ * ========================================
+ * VISITOR COUNTER COMPONENT
+ * ========================================
+ * 
+ * Componente per mostrare il contatore visitatori
+ * con stile glassmorphism e backdrop blur
+ * 
+ * ========================================
+ */
+
+.visitor-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--testo-bianco);
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-medio);
+  -webkit-backdrop-filter: blur(4px); /* Safari */
+  backdrop-filter: blur(4px);
+  transition: all var(--duration-medium-2) var(--easing-standard);
+  /* Forza visibilità anche se il parent ha scroll-reveal-hidden */
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.visitor-counter:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.visitor-counter-label {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.visitor-counter-value {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--testo-bianco);
+  font-size: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

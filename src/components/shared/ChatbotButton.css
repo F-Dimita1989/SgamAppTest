@@ -1,0 +1,479 @@
+/**
+ * ========================================
+ * CHATBOT BUTTON COMPONENT - MOBILE-FIRST
+ * Compatibile Chrome, Firefox, Safari/iOS e Opera Mobile
+ * ========================================
+ */
+
+/* ========================================
+ * CHATBOT BUTTON PORTAL (overlay invisibile)
+ * ======================================== */
+#chatbot-button-portal {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1000;
+  pointer-events: none; /* portal non blocca click */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  contain: strict;
+  isolation: isolate;
+}
+
+/* ========================================
+ * BOTTONE FISSO
+ * ======================================== */
+.chatbot-button-fixed {
+  position: fixed;
+  bottom: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) + env(safe-area-inset-bottom, 0)
+  );
+  right: calc(
+    var(--spaziatura-lg) + var(--spaziatura-sm) + env(safe-area-inset-right, 0)
+  );
+  z-index: 1001;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: opacity;
+  overscroll-behavior: contain;
+}
+
+/* Nascondi bottone */
+.chatbot-button-fixed.chatbot-button-hidden {
+  display: none;
+}
+
+/* ========================================
+ * BOTTONE CIRCOLARE
+ * ======================================== */
+.chatbot-btn-fixed {
+  width: 4.375rem;
+  height: 4.375rem;
+  border-radius: var(--border-radius-rotondo);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--elevation-4);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  pointer-events: auto;
+  transform: translateZ(0);
+}
+
+/* Icona interna */
+.sgamy-fixed-icon {
+  width: calc(var(--spaziatura-xl) + var(--spaziatura-lg));
+  height: calc(var(--spaziatura-xl) + var(--spaziatura-lg));
+  border-radius: var(--border-radius-rotondo);
+  object-fit: cover;
+}
+
+/* ========================================
+ * ANIMAZIONE COMPATIBILE iOS
+ * ======================================== */
+.chatbot-btn-pulse {
+  animation: chatbotPulseIOS 2s ease-in-out infinite;
+}
+
+@keyframes chatbotPulseIOS {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ========================================
+ * MOBILE FIRST: override generico per tutti i browser
+ * ======================================== */
+@media (max-width: 768px) {
+  #chatbot-button-portal {
+    width: 0 !important;
+    height: 0 !important;
+    overflow: visible !important; /* lascia uscire il bottone */
+    contain: none !important;
+    isolation: auto !important;
+    transform: none !important;
+    background: transparent !important;
+    pointer-events: none !important;
+    z-index: 1000;
+  }
+
+  .chatbot-button-fixed {
+    bottom: calc(20px + env(safe-area-inset-bottom, 0));
+    right: calc(20px + env(safe-area-inset-right, 0));
+    z-index: 1001;
+  }
+
+  .chatbot-btn-fixed,
+  .sgamy-fixed-icon {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ========================================
+ * FIX iOS / Safari Mobile / Firefox iOS
+ * ======================================== */
+.is-ios #chatbot-button-portal,
+.is-safari.is-mobile #chatbot-button-portal,
+.is-ios.is-chrome #chatbot-button-portal,
+.is-firefox-ios #chatbot-button-portal {
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.is-ios .chatbot-button-fixed,
+.is-safari.is-mobile .chatbot-button-fixed,
+.is-ios.is-chrome .chatbot-button-fixed,
+.is-firefox-ios .chatbot-button-fixed {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1001 !important;
+}
+
+.is-ios .chatbot-btn-fixed,
+.is-safari.is-mobile .chatbot-btn-fixed,
+.is-ios.is-chrome .chatbot-btn-fixed,
+.is-firefox-ios .chatbot-btn-fixed {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.is-ios .sgamy-fixed-icon,
+.is-safari.is-mobile .sgamy-fixed-icon,
+.is-ios.is-chrome .sgamy-fixed-icon,
+.is-firefox-ios .sgamy-fixed-icon {
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* ========================================
+ * FIX OPERA MOBILE
+ * ======================================== */
+/* Opera mobile: applica gli stessi fix di Chrome/Firefox mobile */
+@supports (-webkit-appearance: none) {
+  @media (max-width: 768px) {
+    .is-opera #chatbot-button-portal {
+      position: fixed !important;
+      width: 0 !important;
+      height: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      inset: auto !important;
+      overflow: visible !important;
+      contain: none !important;
+      isolation: auto !important;
+      background: transparent !important;
+      pointer-events: none !important;
+      transform: none !important;
+      z-index: 1000 !important;
+
+      /* Opera mobile: proprietà aggiuntive per garantire visibilità */
+      -webkit-transform: none !important;
+    }
+
+    .is-opera .chatbot-button-fixed {
+      position: fixed !important;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0)) !important;
+      right: calc(20px + env(safe-area-inset-right, 0)) !important;
+      z-index: 1001 !important;
+      pointer-events: auto !important;
+
+      /* Opera mobile: usa translateZ anche su Opera per consistenza */
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+
+      /* Opera mobile: forza visibilità */
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+
+      /* Opera mobile: CRITICO - rimuove contain che nasconde il bottone */
+      contain: none !important;
+
+      /* Opera mobile: forza stacking context corretto */
+      isolation: isolate !important;
+    }
+
+    .is-opera .chatbot-btn-fixed {
+      pointer-events: auto !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .is-opera .sgamy-fixed-icon {
+      pointer-events: none !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+/* Opera mobile: sovrascrive le ottimizzazioni globali per il chatbot button */
+.is-opera.is-mobile #chatbot-button-portal {
+  position: fixed !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: visible !important;
+  contain: none !important;
+  isolation: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  will-change: auto !important;
+  z-index: 1000 !important;
+}
+
+.is-opera.is-mobile .chatbot-button-fixed {
+  /* CRITICO: usa position fixed rispetto al VIEWPORT, non al parent */
+  position: fixed !important;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0)) !important;
+  right: calc(20px + env(safe-area-inset-right, 0)) !important;
+  z-index: 1001 !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Opera mobile: RIMUOVE TUTTE le proprietà che rompono position fixed */
+  contain: none !important;
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  will-change: auto !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  filter: none !important;
+
+  /* Opera mobile: forza il bottone ad essere relativo al viewport */
+  margin: 0 !important;
+  pointer-events: auto !important;
+}
+
+.is-opera.is-mobile .chatbot-btn-fixed {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.is-opera.is-mobile .sgamy-fixed-icon {
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Opera mobile: RIMUOVE transform dai parent che rompono position fixed */
+.is-opera.is-mobile #chatbot-button-portal,
+.is-opera.is-mobile #chatbot-button-portal * {
+  /* Forza rimozione transform dai parent del bottone */
+  transform: none !important;
+  -webkit-transform: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  contain: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+ * FIX FIREFOX MOBILE
+ * ======================================== */
+/* Firefox mobile: applica gli stessi fix di Chrome mobile */
+@supports (-moz-appearance: none) {
+  @media (max-width: 768px) {
+    #chatbot-button-portal {
+      position: fixed !important;
+      width: 0 !important;
+      height: 0 !important;
+      top: 0 !important;
+      left: 0 !important;
+      inset: auto !important;
+      overflow: visible !important;
+      contain: none !important;
+      isolation: auto !important;
+      background: transparent !important;
+      pointer-events: none !important;
+      transform: none !important;
+      z-index: 1000 !important;
+
+      /* Firefox mobile: proprietà aggiuntive per garantire visibilità */
+      -moz-transform: none !important;
+      -moz-contain: none !important;
+    }
+
+    .chatbot-button-fixed {
+      position: fixed !important;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0)) !important;
+      right: calc(20px + env(safe-area-inset-right, 0)) !important;
+      z-index: 1001 !important;
+      pointer-events: auto !important;
+
+      /* Firefox mobile: usa translateZ anche su Firefox per consistenza */
+      transform: translateZ(0) !important;
+      -moz-transform: translateZ(0) !important;
+
+      /* Firefox mobile: forza visibilità */
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+
+      /* Firefox mobile: CRITICO - rimuove contain che nasconde il bottone */
+      contain: none !important;
+      -moz-contain: none !important;
+
+      /* Firefox mobile: forza stacking context corretto */
+      isolation: isolate !important;
+      -moz-isolation: isolate !important;
+    }
+
+    .chatbot-btn-fixed {
+      pointer-events: auto !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .sgamy-fixed-icon {
+      pointer-events: none !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
+/* Firefox ANDROID mobile (Gecko): sovrascrive le ottimizzazioni globali per il chatbot button */
+/* Firefox iOS usa WebKit → NON applica questi fix */
+.is-firefox.is-android.is-mobile #chatbot-button-portal {
+  position: fixed !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: visible !important;
+  contain: none !important;
+  -moz-contain: none !important;
+  isolation: auto !important;
+  -moz-isolation: auto !important;
+  transform: none !important;
+  -moz-transform: none !important;
+  will-change: auto !important;
+  z-index: 1000 !important;
+}
+
+.is-firefox.is-android.is-mobile .chatbot-button-fixed {
+  /* CRITICO: usa position fixed rispetto al VIEWPORT, non al parent */
+  position: fixed !important;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0)) !important;
+  right: calc(20px + env(safe-area-inset-right, 0)) !important;
+  z-index: 1001 !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  /* Firefox Android: RIMUOVE TUTTE le proprietà che rompono position fixed su Gecko */
+  contain: none !important;
+  -moz-contain: none !important;
+  transform: translateZ(0) !important;
+  -moz-transform: translateZ(0) !important;
+  will-change: auto !important;
+  perspective: none !important;
+  -moz-perspective: none !important;
+  filter: none !important;
+
+  /* Firefox Android: forza il bottone ad essere relativo al viewport */
+  margin: 0 !important;
+  pointer-events: auto !important;
+}
+
+.is-firefox.is-android.is-mobile .chatbot-btn-fixed {
+  pointer-events: auto !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.is-firefox.is-android.is-mobile .sgamy-fixed-icon {
+  pointer-events: none !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Firefox ANDROID mobile: RIMUOVE transform dai parent che rompono position fixed su Gecko */
+.is-firefox.is-android.is-mobile #chatbot-button-portal,
+.is-firefox.is-android.is-mobile #chatbot-button-portal * {
+  /* Forza rimozione transform dai parent del bottone */
+  transform: none !important;
+  -moz-transform: none !important;
+  perspective: none !important;
+  -moz-perspective: none !important;
+  contain: none !important;
+  -moz-contain: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+
+/* ========================================
+ * FIX FIREFOX iOS (WebKit)
+ * ======================================== */
+/* Firefox iOS usa WebKit (come Safari), non Gecko */
+/* CRITICO: rimuovi transform dai parent che rompono position fixed */
+/* (già fatto anche per cookie banner, ma lo ri-applichiamo per sicurezza) */
+.is-firefox-ios.is-mobile body,
+.is-firefox-ios.is-mobile html,
+.is-firefox-ios.is-mobile #root {
+  transform: none !important;
+  -webkit-transform: none !important;
+  contain: none !important;
+  perspective: none !important;
+  -webkit-perspective: none !important;
+  filter: none !important;
+}
+
+/* Applica gli stessi fix di Safari iOS per il portal */
+.is-firefox-ios.is-mobile #chatbot-button-portal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1000 !important;
+  pointer-events: none !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: transparent !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.is-firefox-ios.is-mobile .chatbot-button-fixed {
+  position: fixed !important;
+  bottom: calc(var(--spaziatura-lg, 24px) + var(--spaziatura-sm, 8px) + env(safe-area-inset-bottom, 0px)) !important;
+  right: calc(var(--spaziatura-lg, 24px) + var(--spaziatura-sm, 8px) + env(safe-area-inset-right, 0px)) !important;
+  z-index: 1001 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  /* WebKit: usa translateZ per accelerazione hardware */
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+}

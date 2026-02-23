@@ -1,0 +1,659 @@
+/**
+ * ========================================
+ * INDEX.CSS - GLOBAL STYLES
+ * ========================================
+ * 
+ * Stili globali dell'applicazione
+ * Importa DesignSystem.css
+ * Gestisce accessibilità, scrollbar, browser fixes
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * BASE
+ * ======================================== */
+
+@import "./DesignSystem.css";
+
+:root {
+  --accessibility-font-size: 100%;
+  --accessibility-link-underline: none;
+  --accessibility-high-contrast: 0;
+  --accessibility-reduce-motion: 0;
+  --accessibility-focus-visible: 1;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* Touch targets minimi per iOS/Android - ottimizzati */
+button,
+a,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
+  /* Ottimizzazione mobile: riduce latenza touch */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Link inline più piccoli ma con padding adeguato */
+a:not(button):not(.btn):not([role="button"]) {
+  min-height: auto;
+  min-width: auto;
+  padding: var(--spaziatura-xs) var(--spaziatura-sm);
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: var(--sfondo-principale);
+  font-family: "Montserrat", sans-serif;
+  overflow-x: visible;
+  overflow-y: auto;
+
+  /* Firefox scrollbar - sempre visibile */
+  scrollbar-width: auto;
+  scrollbar-color: var(--testo-grigio-chiaro-material)
+    var(--sfondo-grigio-medio);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* Small viewport height - stabile durante lo scroll */
+  background-color: var(--sfondo-principale);
+  font-family: "Montserrat", sans-serif;
+  overflow-x: visible;
+  overflow-y: visible;
+  font-size: var(--accessibility-font-size);
+
+  /* Nasconde scrollbar Firefox */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+
+  /* Ottimizzazione scroll mobile */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none; /* Previene overscroll bounce su iOS */
+}
+
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh; /* Small viewport height - stabile durante lo scroll */
+  background-color: var(--sfondo-principale);
+  display: flex;
+  flex-direction: column;
+  overflow-x: visible;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Contenuto principale dopo navbar fissa */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 120px;
+  width: 100%;
+  background-color: var(--sfondo-principale);
+  box-sizing: border-box;
+}
+
+/* =========================================================
+      CUSTOM SCROLLBAR (Chrome / Safari / Edge)
+      ========================================================= */
+body::-webkit-scrollbar {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+body::-webkit-scrollbar-track,
+body::-webkit-scrollbar-thumb {
+  display: none !important;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb {
+  background: var(--sfondo-grigio-medio);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--testo-grigio-chiaro-material);
+}
+
+/* =========================================================
+      ACCESSIBILITY
+      ========================================================= */
+
+/* Font-size options */
+html[data-accessibility-font="large"] {
+  font-size: 120% !important;
+}
+html[data-accessibility-font="xlarge"] {
+  font-size: 150% !important;
+}
+
+/* Link underline */
+html[data-accessibility-links="underline"] a {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* High contrast mode */
+html[data-accessibility-contrast="high"] body,
+html[data-accessibility-contrast="high"] #root,
+html[data-accessibility-contrast="high"] .main-content {
+  background: var(--sfondo-bianco) !important;
+  color: var(--testo-nero) !important;
+}
+html[data-accessibility-contrast="high"] a {
+  color: var(--colore-link-highcontrast) !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+html[data-accessibility-contrast="high"] input,
+html[data-accessibility-contrast="high"] select,
+html[data-accessibility-contrast="high"] textarea {
+  background: var(--sfondo-bianco) !important;
+  color: var(--testo-nero) !important;
+  border: 2px solid var(--testo-nero) !important;
+}
+
+/* Reduce motion */
+html[data-accessibility-motion="reduce"] * {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Focus enhancement */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+*:focus-visible {
+  outline: 3px solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+html[data-accessibility-focus="enhanced"] *:focus-visible {
+  outline: 5px solid var(--colore-focus-enhanced) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 6px rgba(var(--colore-focus-enhanced-rgb), 0.4) !important;
+}
+
+/* =========================================================
+      SCREEN READER HELPERS
+      ========================================================= */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--colore-primario);
+  color: var(--testo-bianco);
+  padding: var(--spaziatura-sm) var(--spaziatura-md);
+  font-weight: 600;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  transition: top 0.3s ease;
+}
+.skip-to-main:focus {
+  top: 0;
+  outline: 3px solid var(--testo-bianco);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+      PERFORMANCE & ANIMATIONS
+      ========================================================= */
+.scroll-reveal-item {
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(30px) translateZ(0);
+  opacity: 0;
+  -webkit-transform: translateY(30px) translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.scroll-reveal-item.scroll-reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) translateZ(0) !important;
+  -webkit-transform: translateY(0) translateZ(0) !important;
+  will-change: auto;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .scroll-reveal-item:not(.scroll-reveal-visible) {
+    will-change: transform, opacity;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  /* Previene ridimensionamento durante lo scroll su mobile */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Previene zoom involontario e ridimensionamento durante lo scroll su mobile */
+@media (max-width: 768px) {
+  * {
+    /* Previene zoom involontario durante lo scroll */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Permette selezione testo solo dove necessario */
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  li,
+  td,
+  th,
+  label,
+  input[type="text"],
+  textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* Mantiene dimensioni fisse durante lo scroll */
+  img,
+  video,
+  iframe,
+  canvas,
+  svg {
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    -moz-transform: translateZ(0) !important;
+    will-change: auto !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    -moz-backface-visibility: hidden !important;
+  }
+
+  /* Previene ridimensionamento dei componenti durante lo scroll */
+  section,
+  div,
+  article,
+  main,
+  header,
+  footer,
+  aside,
+  nav {
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+  }
+}
+
+/* =========================================================
+      iOS / Mobile Optimizations
+      ========================================================= */
+.needs-mobile-fix,
+html.needs-mobile-fix,
+body.needs-mobile-fix,
+#root.needs-mobile-fix {
+  min-height: 100vh;
+  min-height: 100svh; /* Small viewport height - stabile durante lo scroll */
+  min-height: -webkit-fill-available;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.needs-mobile-fix * {
+  -webkit-tap-highlight-color: rgba(var(--colore-primario-rgb), 0.1);
+  tap-highlight-color: rgba(var(--colore-primario-rgb), 0.1);
+  touch-action: pan-y;
+}
+
+.needs-mobile-fix img,
+.needs-mobile-fix video,
+.needs-mobile-fix iframe {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.needs-mobile-fix input,
+.needs-mobile-fix textarea,
+.needs-mobile-fix select {
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+@media (max-width: 768px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Fixed elements iOS / all mobile */
+.fixed-element,
+[class*="floating"],
+[class*="fixed-button"] {
+  position: fixed !important;
+  will-change: auto !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  z-index: 1000 !important; /* Ridotto da 99999 per evitare problemi di stacking context */
+  pointer-events: auto !important;
+}
+
+.fixed-bottom,
+.floating-bottom,
+.scroll-to-top-button,
+.chatbot-button-fixed {
+  bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+}
+
+/* Browser specific fixes */
+.is-opera.is-mobile,
+html.is-opera.is-mobile,
+body.is-opera.is-mobile {
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+.is-opera.is-mobile #root {
+  display: flex !important;
+  background-color: #f4f4fa !important;
+}
+.is-opera.is-mobile .main-content,
+.is-opera.is-mobile main {
+  display: block !important;
+}
+/* Firefox ANDROID (Gecko) ottimizzazioni scroll */
+.is-firefox.is-android.is-mobile {
+  /* RIMOSSO transform perché rompe position fixed del cookie banner */
+  /* transform: translateZ(0); */
+  /* -moz-transform: translateZ(0); */
+  overscroll-behavior-y: contain;
+  -moz-overflow-scrolling: touch;
+}
+
+/* Ottimizzazioni specifiche per pagine su Firefox Android (Gecko) */
+.is-firefox.is-android.is-mobile section,
+.is-firefox.is-android.is-mobile article,
+.is-firefox.is-android.is-mobile main,
+.is-firefox.is-android.is-mobile .page-container,
+.is-firefox.is-android.is-mobile .content-wrapper {
+  /* RIMOSSO transform perché può interferire con position fixed del cookie banner */
+  /* -moz-transform: translateZ(0); */
+  /* transform: translateZ(0); */
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: auto;
+}
+
+/* =========================================================
+   OTTIMIZZAZIONI SCROLL FIREFOX ANDROID MOBILE (Gecko)
+   ========================================================= */
+
+/* Ottimizza scroll su Firefox Android (Gecko) */
+.is-firefox.is-android.is-mobile {
+  scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  /* RIMOSSO transform perché rompe position fixed del cookie banner */
+  /* -moz-transform: translateZ(0); */
+  /* transform: translateZ(0); */
+  /* Previene rimbalzi durante lo scroll */
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
+  -moz-overscroll-behavior-y: contain;
+  -moz-overscroll-behavior-x: none;
+  /* Smooth scrolling nativo */
+  -moz-overflow-scrolling: touch;
+  /* Ottimizza rendering durante lo scroll */
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+/* Ottimizza scroll per container scrollabili specifici - ESCLUDI hero-section */
+.is-firefox.is-android.is-mobile main,
+.is-firefox.is-android.is-mobile section:not(.hero-section),
+.is-firefox.is-android.is-mobile article,
+.is-firefox.is-android.is-mobile [class*="scroll"],
+.is-firefox.is-android.is-mobile [class*="container"] {
+  /* RIMOSSO transform perché può interferire con position fixed del cookie banner */
+  /* -moz-transform: translateZ(0); */
+  /* transform: translateZ(0); */
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  -moz-scroll-behavior: smooth;
+  /* Ottimizza rendering */
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* RIMOSSO contain perché può interferire con position fixed */
+  /* contain: layout style paint; */
+  /* -moz-contain: layout style paint; */
+  /* Will-change per scroll performance */
+  will-change: scroll-position;
+}
+
+/* Firefox mobile ora usa gli stessi stili di Chrome mobile - nessun fix specifico per hero-section */
+
+/* =========================================================
+   OTTIMIZZAZIONI ANIMAZIONI FIREFOX MOBILE
+   ========================================================= */
+
+/* Previene problemi di rendering durante lo scroll su Firefox mobile */
+@media (max-width: 768px) {
+  @-moz-document url-prefix() {
+    * {
+      -moz-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Escludi input, form e searchbar dalle ottimizzazioni hardware acceleration */
+    input,
+    textarea,
+    select,
+    button,
+    .hero-searchbar-wrapper,
+    .hero-searchbar-container,
+    .hero-searchbar-input,
+    .hero-search-results,
+    .hero-search-result-item {
+      -moz-transform: none !important;
+      transform: none !important;
+      -moz-backface-visibility: visible !important;
+      backface-visibility: visible !important;
+    }
+
+    /* Ottimizza rendering immagini su Firefox mobile */
+    img {
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+      -moz-transform: translateZ(0);
+      transform: translateZ(0);
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* Ottimizza rendering componenti durante scroll - escludi searchbar e hero-section */
+    section:not(.hero-section),
+    article,
+    main,
+    div:not(.hero-searchbar-wrapper):not(.hero-searchbar-container):not(
+        .hero-search-results
+      ):not(.hero-section):not(.hero-content):not(.hero-overlay) {
+      -moz-transform: translateZ(0);
+      transform: translateZ(0);
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* Firefox mobile ora usa gli stessi stili di Chrome mobile - nessun fix specifico per hero-section */
+
+    /* Ottimizza elementi con animazioni - forza hardware acceleration */
+    [class*="animate"],
+    [class*="fade"],
+    [class*="slide"],
+    [class*="scale"],
+    .scroll-reveal-item {
+      -moz-transform: translateZ(0);
+      transform: translateZ(0);
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+    }
+
+    /* Ottimizza transizioni hover - sostituisce "all" con proprietà specifiche */
+    a:hover,
+    button:hover,
+    [role="button"]:hover,
+    .btn:hover {
+      -moz-transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.2s ease-out, color 0.2s ease-out,
+        background-color 0.2s ease-out, box-shadow 0.2s ease-out !important;
+      transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.2s ease-out, color 0.2s ease-out,
+        background-color 0.2s ease-out, box-shadow 0.2s ease-out !important;
+    }
+
+
+    /* Ottimizza animazioni e transizioni su Firefox mobile - escludi searchbar */
+    *:not(.hero-searchbar-wrapper):not(.hero-searchbar-container):not(
+        .hero-searchbar-input
+      ):not(.hero-search-results):not(.hero-search-result-item) {
+      -moz-animation-duration: 0.2s !important;
+      animation-duration: 0.2s !important;
+      -moz-transition-duration: 0.2s !important;
+      transition-duration: 0.2s !important;
+      -moz-transition-property: transform, opacity, color, background-color,
+        box-shadow, border-color !important;
+      transition-property: transform, opacity, color, background-color,
+        box-shadow, border-color !important;
+    }
+
+    /* Mantiene durate personalizzate per animazioni specifiche */
+    [class*="slow"],
+    [class*="long"],
+    .slow-animation,
+    .long-animation {
+      -moz-animation-duration: 0.3s !important;
+      animation-duration: 0.3s !important;
+    }
+
+    /* Ottimizza elementi con scroll reveal */
+    .scroll-reveal-item {
+      -moz-transform: translateY(30px) translateZ(0);
+      transform: translateY(30px) translateZ(0);
+      -moz-transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.3s ease-out !important;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.3s ease-out !important;
+    }
+
+    .scroll-reveal-item.scroll-reveal-visible {
+      -moz-transform: translateY(0) translateZ(0) !important;
+      transform: translateY(0) translateZ(0) !important;
+    }
+
+  }
+}
+.is-edge.is-mobile {
+  transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  touch-action: pan-y pinch-zoom;
+  -ms-touch-action: pan-y pinch-zoom;
+}
+
+/* iOS Safari / Chrome iOS fixes */
+.is-safari.is-mobile,
+.is-ios.is-safari,
+.is-ios.is-chrome {
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: -webkit-fill-available;
+}
+
+/* Portal iOS - pointer-events: none per non bloccare i click */
+.is-ios #chatbot-button-portal,
+.is-safari.is-mobile #chatbot-button-portal,
+.is-ios.is-chrome #chatbot-button-portal,
+.is-ios #scroll-to-top-portal,
+.is-safari.is-mobile #scroll-to-top-portal,
+.is-ios.is-chrome #scroll-to-top-portal {
+  position: fixed !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1000 !important; /* Ridotto da 99999 */
+  pointer-events: none !important; /* Portal non cliccabile */
+}
+
+/* Bottoni iOS - pointer-events: auto per essere cliccabili */
+.is-ios .chatbot-button-fixed,
+.is-safari.is-mobile .chatbot-button-fixed,
+.is-ios.is-chrome .chatbot-button-fixed,
+.is-ios .scroll-to-top-button,
+.is-safari.is-mobile .scroll-to-top-button,
+.is-ios.is-chrome .scroll-to-top-button {
+  position: fixed !important;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 1001 !important; /* Ridotto da 99999, sopra il portal */
+  pointer-events: auto !important; /* IMPORTANTE: bottone cliccabile */
+}

@@ -1,0 +1,466 @@
+/**
+ * ========================================
+ * TABS COMPONENT
+ * ========================================
+ * 
+ * Componente tabs Material Design
+ * Con FAQ collapsible integrato
+ * 
+ * ========================================
+ */
+
+/* ========================================
+ * TABS SECTION
+ * ======================================== */
+
+.tabs-section {
+  max-width: 75rem; /* 1200px */
+  margin: 0 auto;
+  padding: var(--spaziatura-xxl) var(--spaziatura-md);
+}
+
+.tabs-container {
+  padding: 0;
+}
+
+.tabs-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: rgba(var(--testo-nero-rgb), 0.87);
+  margin: 0 0 var(--spaziatura-xxl) 0;
+  text-align: left;
+  letter-spacing: -0.01562em;
+}
+
+/* ========================================
+ * TABS WRAPPER
+ * ======================================== */
+
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs-header {
+  display: flex;
+  gap: 0;
+  border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.12);
+  margin-bottom: var(--spaziatura-xl);
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+}
+
+/* ========================================
+ * TABS BUTTONS
+ * ======================================== */
+
+.tabs-button {
+  padding: var(--spaziatura-md) var(--spaziatura-lg);
+  background: transparent;
+  border: none;
+  border-bottom: var(--border-normale) solid transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(var(--testo-nero-rgb), 0.6);
+  cursor: pointer;
+  transition: all var(--duration-short-4) var(--easing-standard);
+  position: relative;
+  bottom: -1px;
+  text-transform: none;
+  letter-spacing: 0.0892857143em;
+  min-height: 48px;
+  overflow: hidden;
+  outline: none !important;
+  outline-offset: 0 !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+  -moz-outline: none !important;
+  box-shadow: none !important;
+}
+
+.tabs-button:focus,
+.tabs-button:focus-visible,
+.tabs-button:active,
+.tabs-button.active,
+.tabs-button.active:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Ripple effect Material Design */
+.tabs-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(var(--colore-primario-rgb), 0.2);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-2) var(--easing-standard),
+              height var(--duration-medium-2) var(--easing-standard),
+              opacity var(--duration-medium-2) var(--easing-standard);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tabs-button:active::before {
+  width: 12.5rem; /* 200px */
+  height: 12.5rem; /* 200px */
+  opacity: 1;
+  transition: width var(--duration-short-2) var(--easing-standard),
+              height var(--duration-short-2) var(--easing-standard),
+              opacity var(--duration-short-2) var(--easing-standard);
+}
+
+.tabs-button:hover {
+  color: rgba(var(--testo-nero-rgb), 0.87);
+  background: rgba(var(--testo-nero-rgb), 0.04);
+}
+
+.tabs-button.active {
+  color: var(--colore-primario);
+  border-bottom-color: var(--colore-primario);
+  background: transparent;
+  font-weight: 500;
+}
+
+.tabs-button.active:hover {
+  background: rgba(var(--colore-primario-rgb), 0.04);
+}
+
+/* ========================================
+ * TABS CONTENT
+ * ======================================== */
+
+.tabs-content {
+  position: relative;
+  min-height: 12.5rem; /* 200px */
+}
+
+.tabs-panel {
+  display: none;
+  animation: fadeInUp var(--duration-medium-2) var(--easing-standard);
+}
+
+.tabs-panel.active {
+  display: block;
+}
+
+/* Animazione fadeInUp con variante piccola - mantenuta per effetto specifico */
+
+.tabs-panel-content h3 {
+  font-size: 1.5rem;
+  color: rgba(var(--testo-nero-rgb), 0.87);
+  margin: 0 0 var(--spaziatura-md) 0;
+  font-weight: 400;
+  letter-spacing: -0.00833em;
+}
+
+.tabs-panel-content p {
+  font-size: 1rem;
+  color: rgba(var(--testo-nero-rgb), 0.6);
+  line-height: 1.75;
+  margin: 0 0 var(--spaziatura-lg) 0;
+}
+
+.tabs-faq-intro {
+  font-size: 1rem;
+  color: rgba(var(--testo-nero-rgb), 0.6);
+  margin-bottom: var(--spaziatura-lg) !important;
+  font-style: normal;
+}
+
+/* ========================================
+ * FEATURE LIST
+ * ======================================== */
+
+.tabs-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs-feature-list li {
+  font-size: 1rem;
+  color: rgba(var(--testo-nero-rgb), 0.87);
+  padding: var(--spaziatura-md) 0;
+  padding-left: 2.5rem; /* 40px */
+  position: relative;
+  line-height: 1.75;
+  border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.08);
+  transition: background-color var(--duration-short-4) var(--easing-standard);
+}
+
+.tabs-feature-list li:hover {
+  background-color: rgba(var(--testo-nero-rgb), 0.02);
+  margin: 0 calc(var(--spaziatura-md) * -1);
+  padding-left: 3.5rem; /* 56px */
+  padding-right: var(--spaziatura-md);
+  border-radius: var(--border-radius-piccolo);
+}
+
+.tabs-feature-list li:last-child {
+  border-bottom: none;
+}
+
+.tabs-feature-list li::before {
+  content: '✓';
+  position: absolute;
+  left: var(--spaziatura-md);
+  top: var(--spaziatura-md);
+  color: var(--colore-primario);
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* ========================================
+ * FAQ COLLAPSIBLE
+ * ======================================== */
+
+.tabs-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spaziatura-md);
+  margin-top: var(--spaziatura-sm);
+}
+
+.tabs-faq-collapsible {
+  width: 100%;
+}
+
+.tabs-faq-collapsible__header {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: var(--spaziatura-md) 0;
+  border-radius: 0;
+  text-align: left;
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgba(var(--testo-nero-rgb), 0.87);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--duration-short-4) var(--easing-standard);
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.12);
+}
+
+/* Ripple effect Material per FAQ collapsible */
+.tabs-faq-collapsible__header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(var(--testo-nero-rgb), 0.1);
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-medium-2) var(--easing-standard),
+              height var(--duration-medium-2) var(--easing-standard),
+              opacity var(--duration-medium-2) var(--easing-standard);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tabs-faq-collapsible__header:active::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+  transition: width var(--duration-short-2) var(--easing-standard),
+              height var(--duration-short-2) var(--easing-standard),
+              opacity var(--duration-short-2) var(--easing-standard);
+}
+
+.tabs-faq-collapsible__header:hover {
+  background: rgba(var(--testo-nero-rgb), 0.04);
+}
+
+.tabs-faq-collapsible__header:focus {
+  outline: var(--border-normale) solid var(--colore-primario);
+  outline-offset: 2px;
+}
+
+.tabs-faq-collapsible__icon {
+  color: rgba(var(--testo-nero-rgb), 0.54);
+  transition: all var(--duration-short-4) var(--easing-standard);
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-rotondo);
+  background: rgba(var(--testo-nero-rgb), 0.04);
+}
+
+.tabs-faq-collapsible__icon.open {
+  transform: rotate(0deg);
+  background: rgba(var(--colore-primario-rgb), 0.12);
+  color: var(--colore-primario);
+}
+
+.tabs-faq-collapsible__header:hover .tabs-faq-collapsible__icon {
+  background: rgba(var(--testo-nero-rgb), 0.08);
+}
+
+.tabs-faq-collapsible__header:hover .tabs-faq-collapsible__icon.open {
+  background: rgba(var(--colore-primario-rgb), 0.16);
+}
+
+.tabs-faq-collapsible__content {
+  padding: var(--spaziatura-md) 0 var(--spaziatura-lg) 0;
+  font-size: 0.9375rem;
+  background: transparent;
+  border-left: none;
+  margin-top: 0;
+  color: rgba(var(--testo-nero-rgb), 0.6);
+  line-height: 1.75;
+  animation: slideDown var(--duration-medium-2) var(--easing-standard);
+}
+
+/* @keyframes slideDown centralizzato in DesignSystem.css */
+
+/* ========================================
+ * MOBILE RESPONSIVE - Tabs verticali
+ * ======================================== */
+
+@media (max-width: 768px) {
+  .tabs-section {
+    padding: var(--spaziatura-xl) var(--spaziatura-md);
+  }
+
+  .tabs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabs-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: var(--spaziatura-lg);
+    width: 100%;
+  }
+
+  /* Tabs wrapper - layout verticale (header sopra, content sotto) */
+  .tabs-wrapper {
+    flex-direction: column !important;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Tabs header - layout verticale */
+  .tabs-header {
+    flex-direction: column !important;
+    border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.12) !important;
+    border-right: none !important;
+    margin-bottom: var(--spaziatura-lg) !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+    min-width: auto !important;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Tabs buttons - stile verticale, uno sotto l'altro, centrati */
+  .tabs-button {
+    width: 100% !important;
+    text-align: center !important;
+    border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.12) !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important;
+    position: relative;
+    bottom: -1px !important;
+    right: 0 !important;
+    justify-content: center;
+  }
+
+  .tabs-button:last-child {
+    border-bottom: var(--border-sottile) solid rgba(var(--testo-nero-rgb), 0.12) !important;
+  }
+
+  .tabs-button.active {
+    border-bottom-color: var(--colore-primario) !important;
+    border-right-color: transparent !important;
+    background: transparent;
+  }
+
+  /* Tabs content - sotto le tabs, centrato */
+  .tabs-content {
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+  }
+
+  .tabs-panel-content {
+    text-align: center;
+  }
+
+  .tabs-panel-content h3 {
+    text-align: center !important;
+  }
+
+  .tabs-panel-content p {
+    text-align: center !important;
+  }
+
+  .tabs-feature-list {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .tabs-faq-list {
+    text-align: left;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs-section {
+    padding: var(--spaziatura-lg) var(--spaziatura-sm);
+  }
+
+  .tabs-title {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .tabs-header {
+    width: 100% !important;
+    min-width: auto !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .tabs-button {
+    font-size: 0.8125rem;
+    padding: var(--spaziatura-sm) var(--spaziatura-md);
+    min-height: 44px;
+    text-align: center !important;
+  }
+
+  .tabs-panel-content h3 {
+    font-size: 1.25rem;
+    text-align: center !important;
+  }
+
+  .tabs-panel-content p {
+    font-size: 0.9375rem;
+    text-align: center !important;
+  }
+}
